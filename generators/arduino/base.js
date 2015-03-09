@@ -104,7 +104,7 @@ delay(2000);
 }
 */
 Blockly.Arduino.servo_move = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
+  var dropdown_pin = this.getFieldValue('PWM');
   var value_degree = Blockly.Arduino.valueToCode(this, 'DEGREE', Blockly.Arduino.ORDER_ATOMIC);
   //value_degree = value_degree.replace('(','').replace(')','')
   var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC) || '1000'

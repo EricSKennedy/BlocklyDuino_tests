@@ -37,7 +37,7 @@ function injectBlockly(blockly_el, toolbox_path,rtl) {
 };
 
  function arduino_card(){                                                                                     // modified Technozone51
-  var Cacheobj=document.getElementById("labelArduinoCard");
+  var Cacheobj=document.getElementById("pinout");
   var count = Blockly.mainWorkspace.getAllBlocks().length;
   if (myFrame.profile["default"]!=myFrame.profile[Cacheobj.options[Cacheobj.selectedIndex].value]) {
   if (false || window.confirm('Supprimer tout et sélectionner une carte '+myFrame.profile[Cacheobj.options[Cacheobj.selectedIndex].value].description+' ?')) {

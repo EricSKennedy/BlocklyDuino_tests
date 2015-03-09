@@ -75,8 +75,11 @@ Blockly.Blocks.inout_digital_write = {
     this.setColour(230);
     this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_HELPURL);
     this.appendDummyInput("")
-	      .appendField(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_INPUT1)
-	      .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN")
+	    .appendField(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_INPUT1);
+	this.appendValueInput("NUM", Number)
+        .setCheck(Number);
+    this.setInputsInline(true);
+	this.appendDummyInput("")
       	.appendField(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_INPUT2)
       	.appendField(new Blockly.FieldDropdown([["1 -> 5V", "HIGH"], ["0 -> 0V", "LOW"]]), "STAT");
     this.setPreviousStatement(true, null);
@@ -103,7 +106,7 @@ Blockly.Blocks.inout_PWM_write = {
     this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_PWM_WRITE_HELPURL);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_INOUT_PWM_WRITE_INPUT1)
-        .appendField(new Blockly.FieldDropdown(profile.arduino_mega.PWM), "PIN");
+        .appendField(new Blockly.FieldDropdown(profile.default.PWM), "PIN");
     this.appendValueInput("NUM", Number)
         .appendField(Blockly.Msg.ARDUINO_INOUT_PWM_WRITE_INPUT2)
         .setCheck(Number);
@@ -197,8 +200,10 @@ Blockly.Blocks.servo_move = {
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT1)
         .appendField(new Blockly.FieldImage(Blockly.Msg.ARDUINO_SERVO_MOVE_IMAGE, 64, 64))
-        .appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT2)
-        .appendField(new Blockly.FieldDropdown(profile.arduino_mega.PWM), "PIN")
+    this.appendDummyInput("")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT2)
+        .appendField(new Blockly.FieldDropdown(profile.default.PWM), "PIN")
     this.appendValueInput("DEGREE", Number)
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -220,8 +225,10 @@ Blockly.Blocks.servo_read_degrees = {
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_INPUT1)
         .appendField(new Blockly.FieldImage(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_IMAGE, 64, 64))
+	this.appendDummyInput("")	
+        .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_INPUT2)
-        .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN");
+        .appendField(new Blockly.FieldDropdown(profile.default.PWM), "PIN");
     this.setOutput(true, Number);
     this.setTooltip(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_TOOLTIP);
   }
