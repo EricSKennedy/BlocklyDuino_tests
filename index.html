@@ -1,0 +1,130 @@
+﻿<html>
+<head>
+<link rel="icon" type="image/png" href="images/favicon.bmp" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Blockly Arduino</title>
+<script type="text/javascript" src="blocks/blockly_compressed.js"></script>
+<script type="text/javascript" src="blocks/blocks_compressed.js"></script>
+<script type="text/javascript" src="blocks/arduino_base.js"></script>
+<script type="text/javascript" src="generators/arduino/arduino.js"></script>
+<script type="text/javascript" src="generators/arduino/base.js"></script>
+<script type="text/javascript" src="generators/arduino/controls.js"></script>
+<script type="text/javascript" src="generators/arduino/grove.js"></script>
+<script type="text/javascript" src="generators/arduino/logic.js"></script>
+<script type="text/javascript" src="generators/arduino/math.js"></script>
+<script type="text/javascript" src="generators/arduino/procedures.js"></script>
+<script type="text/javascript" src="generators/arduino/text.js"></script>
+<script type="text/javascript" src="generators/arduino/variables.js"></script>
+<script type="text/javascript" src="utils/spin.js"></script>
+<script type="text/javascript" src="utils/blocklyDuino.js"></script>
+<script type="text/javascript" src="utils/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="utils/bootstrap.min.js"></script>
+<script type="text/javascript" src="utils/compilerflasher.js"></script>
+<script type="text/javascript" src="utils/prettify.js"></script>
+<script type="text/javascript" src="lang/code.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/blocklyDuino.css">
+<link rel="stylesheet" type="text/css" href="css/prettify.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+</head>
+
+<body>
+	<div id="divTitre">
+		<p>
+			<a href="http://www.technologiescollege.fr/blocklyduino/"> <img
+				src="images/Arduino-uno-perspective-transparent.png" border="0"
+				height="76px">
+			</a> 
+			<b>BlocklyDuino</b> : 
+			<span id="title">&eacute;diteur graphique pour aider &agrave; la programmation des interfaces	Arduino</span>
+		</p>
+	</div>
+	<div id="divLang">
+		<select id="languageMenu"></select>
+	</div>
+	<div id="divToolboxMenu">
+		<label id="labelToolbox">Choix de la Toolbox : </label><select	id="toolboxMenu"></select>
+		<label id="labelArduinoCard">Arduino card : </label><select id="arduino_card"></select>
+	</div>
+	<div id="divButtons">
+		<button id="button_material" class="btn btn-info">
+			<span class="glyphicon glyphicon-flash"></span>
+			<span	id="span_material"> Mat&eacute;riels connect&eacute;s</span>
+		</button>
+		<button id="button_delete" class="btn btn-danger">
+			<span class="glyphicon glyphicon-erase"></span>
+			<span	id="span_delete"> R&eacute;initialiser</span>
+		</button>
+		<a id="button_saveXML" class='btn btn-success' href="#" role='button'>
+		  <span class="glyphicon glyphicon-floppy-save"></span>
+		  <span id="span_saveXML"> Sauver en fichier XML</span>
+		 </a>
+		<button id="button_fakeload" class="btn btn-success">
+			<span class="glyphicon glyphicon-floppy-open"></span>
+			<span	id="span_fakeload"> Charger un fichier XML</span>
+		</button>
+		<input type="file" id="load" style="display: none;" />
+	</div>
+
+	<!-- Nav tabs -->
+	<div id="ulTabpanel">
+		<ul class="nav nav-pills" role="tablist">
+			<li role="presentation" id="tab_blocks" class="active">
+				 <a href="#content_blocks" aria-controls="content_blocks" role="tab"	data-toggle="tab">
+				     <span class="glyphicon glyphicon-home"></span>
+					 <span id="a_blocks"> Blocs</span>
+				 </a>
+			</li>
+			<li role="presentation" id="tab_arduino">
+			     <a href="#content_arduino" aria-controls="content_arduino" role="tab" data-toggle="tab">
+			         <span class="glyphicon glyphicon-pencil"></span>
+					<span id="a_arduino"> Code Arduino</span>
+				 </a>
+			</li>
+			<li role="presentation" id="tab_term">
+			     <a href="#content_term" aria-controls="content_term" role="tab" data-toggle="tab">
+			         <span	class="glyphicon glyphicon-play"></span>
+			         <span id="a_term"> Console S&eacute;rie</span>
+			     </a>
+			</li>
+			<li role="presentation" id="tab_xml">
+			     <a href="#content_xml"	aria-controls="content_xml" role="tab" data-toggle="tab">
+			         <span	class="glyphicon glyphicon-file"></span>
+			         <span id="a_xml"> 	Traduction XML</span>
+			     </a>
+			 </li>
+		</ul>
+	</div>
+	<div id="divTabpanel" role="tabpanel">
+		<!-- Tab panes -->
+		<div id="content_area" class="tab-content">
+			<div id="content_blocks" class="tab-pane active"></div>
+			<div id="content_arduino" class="tab-pane">
+				<select id="cb_cf_boards"></select><select id="cb_cf_ports"></select>
+				<button id="cb_cf_verify_btn" class="btn btn-primary">V&eacute;rifier le code</button>
+				<button id="cb_cf_flash_btn" class="btn btn-primary">T&eacute;l&eacute;verser dans l'Arduino !</button>
+				<a id="button_saveArduino" class='btn btn-primary' href="#" role='button'>Sauvegarde en fichier INO</a>
+				<pre id="pre_arduino"></pre>
+				<div id="debug_arduino"></div>
+			</div>
+			<div id="content_term" class="tab-pane">
+				<select id="cb_cf_baud_rates"></select>
+				<button id="cb_cf_serial_monitor_connect" class="btn btn-primary">Connecter la console s&eacute;rie</button>
+				<div id="cb_cf_serial_monitor"></div>
+			</div>
+			<div id="content_xml" class="tab-pane">
+				<pre id="pre_xml"></pre>
+			</div>
+		</div>
+	</div>
+
+	<div id="divFooter" role="tabpanel">
+		<a href="https://github.com/technologiescollege/BlocklyDuino">
+		      <i>BlocklyDuino FR sur Github</i></a> <i> - traductions et adaptations Sébastien Canet, sur la reprise du code amélioré par Julien Rat, surboostés par Olivier	M&eacute;tayer !</i>
+	</div>
+
+</body>
+
+</html>
+
