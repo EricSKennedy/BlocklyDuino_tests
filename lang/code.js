@@ -80,7 +80,7 @@ Code.TOOLBOX_NAME = {
 		'arduino':'Arduino',
 		'bitbloq':'BitBloq',
 		'grove':'Grove',		
-		'technozone':'TechnoZone51'
+		'technozone51':'TechnoZone51'
 };
 /**
  * List of RTL languages.

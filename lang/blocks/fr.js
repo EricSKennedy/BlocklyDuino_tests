@@ -444,3 +444,9 @@ Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_TOOLTIP = "renvoie le nombre de degrés d
 Blockly.Msg.ARDUINO_SERIAL_PRINT_HELPURL = "http://www.arduino.cc/en/Serial/Print";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT = "envoyer sur le port série la donnée :";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP = "envoie des données sur le port série pour surveillance par le moniteur en ASCII";
+
+Blockly.Msg.GROVE_INOUT_LED_HELPURL = "http://www.seeedstudio.com/wiki/index.php?title=GROVE_-_Starter_Bundle_V1.0b#LED";
+Blockly.Msg.GROVE_INOUT_LED_INPUT1 = "mettre la DEL";
+Blockly.Msg.GROVE_INOUT_LED_INPUT2 = "sur la broche Digital";
+Blockly.Msg.GROVE_INOUT_LED_INPUT3 = "à l'état";
+Blockly.Msg.GROVE_INOUT_LED_TOOLTIP = "active la sortie Digital sur laquelle la DEL est branchée";

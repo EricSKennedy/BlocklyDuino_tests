@@ -57,7 +57,7 @@ Blockly.Arduino.inout_digital_write = function() {
 };
 
 Blockly.Arduino.inout_digital_read = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
+  var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
   Blockly.Arduino.setups_['setup_input_' + dropdown_pin] = 'pinMode(' + dropdown_pin + ', INPUT);';
   var code = 'digitalRead(' + dropdown_pin + ')';
   return [code, Blockly.Arduino.ORDER_ATOMIC];

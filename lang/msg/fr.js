@@ -12,6 +12,11 @@ Blockly.Msg.CAT_ARDUINO = "Arduino";
 Blockly.Msg.CAT_ARDUINO_IN = "entrées";
 Blockly.Msg.CAT_ARDUINO_OUT = "sorties";
 Blockly.Msg.CAT_ARDUINO_SERVO = "servo-moteur";
+Blockly.Msg.CAT_GROVE = "Grove";
+Blockly.Msg.CAT_GROVE_IN = "capteurs";
+Blockly.Msg.CAT_GROVE_OUT = "actionneurs";
+Blockly.Msg.CAT_GROVE_LCD = "écran LCD";
+Blockly.Msg.CAT_GROVE_COMM = "communication";
 
 var MSG = {
   title: "éditeur graphique pour aider à la programmation des interfaces Arduino",
