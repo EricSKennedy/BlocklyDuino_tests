@@ -155,4 +155,6 @@
     .color_cat_arduino_servo {
         background-color : #8cb8c0;
     }
-    
+    .color_cat_grove, .color_cat_grove_in, .color_cat_grove_out, .color_cat_grove_lcd, .color_cat_grove_comm {
+        background-color : #8c95c0;
+    }
