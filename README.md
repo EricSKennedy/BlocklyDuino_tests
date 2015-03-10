@@ -1,4 +1,4 @@
-Version francisée de BlocklyDuino
+Version **internationale** de BlocklyDuino
 =====
 
 BlocklyDuino est un programme web, un **webware graphique permettant la programmation graphique pour [Arduino](http://www.arduino.cc/) et sa _traduction en code_**.
@@ -9,7 +9,9 @@ BlocklyDuino est basé sur [Blockly](https://developers.google.com/blockly/), un
 
 BlocklyDuino possède une bibliothèque de blocs pour les modules [Grove](http://www.seeedstudio.com/wiki/GROVE_System), particulièrement adaptée à la découverte des micro-contrôleurs et aux expérimentations de systèmes mécatroniques.
 
-Cette version a été françisée et réorganisée pour la faire utiliser au mieux par des élèves débutants dans le code.
+Libre à vous d'en rajouter autant que voulu grâce à cette notice explicative : [http://tic.technologiescollege.fr/wiki/doku.php/fr/arduino/blocklyduino/creerblocsmulti](http://tic.technologiescollege.fr/wiki/doku.php/fr/arduino/blocklyduino/creerblocsmulti)
+
+Cette version a été réorganisée et améliorée pour la faire utiliser au mieux par des élèves débutants dans le code.
 
 **_Toutes les remarques sont les bienvenues pour améliorer la syntaxe !_**
 
