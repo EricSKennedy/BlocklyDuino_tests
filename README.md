@@ -19,8 +19,10 @@ Cette version a été réorganisée et améliorée pour la faire utiliser au mie
 
 * programmation pour Arduino en drag'n'drop graphique,
 * génère un code totalement compatible avec le code Arduino,
-* interaction des cartes Arduino grâce aux modules Grove rajoutés : plus de 10 blocs spécifiques à des capteurs/actionneurs Grove,
+* interaction des cartes Arduino grâce aux modules rajoutés : plus de 10 blocs spécifiques à des capteurs/actionneurs Grove, ainsi que ce xu de TechnoZone51, Bitbloq, et ...
 * possibilité de charger automatiquement des fichiers sur le site grâce aux paramètres de l'adresse URL _(voir les démos ci-dessous)._
+* téléversement et console série depuis l'interface web,
+* sauvegarde/lecture de fichiers INO et XML
 
 ## Démos
 
@@ -39,24 +41,23 @@ Si vous préfréez l'utiliser en local, il vous suffit de télécharger le code 
 
 Vous pouvez l'héberger sur un serveur, et ainsi y faire accéder de nombreux postes en pointant vers ce fichier 'index.html'.
 
+Pour le téléversement et la console série, vous devez disposer d'un accès web et de filtres ne bloquant pas CodeBender.
+
 ## Utilisation en 4 temps
 
 1. utiliser votre navigateur pour ouvrir BlocklyDuino grâce au fichier 'index.html'
 2. créer son programme Arduino par drag'n'drop (_cliqué-déplacé_) des blocs
-3. sélectionner l'onglet 'Arduino' pour en copier le contenu dans l'[IDE Arduino](https://github.com/technologiescollege/arduino)
+3. sélectionner l'onglet 'Arduino' pour en vérifier le code grâce à CodeBender
 4. presser le bouton 'Téléverser' pour transférer le code dans la mémoire de la carte Arduino
 
 
 ## Auteurs et contributeurs
-Fred Lin (@gasolin).
-Merci à Neil Fraser, Q.Neutron de Blockly http://code.google.com/p/blockly/.
-Merci à l'équipe d'Arduino et Seeeduino pour les blocs spécifiques.
-Ce projet s'est aussi inspiré de [arduiblock](https://github.com/taweili/ardublock) et [modkit](http://www.modk.it/).
-Modifications, simplifications et françisation par Sébastien Canet.
+Programme Blockly : [https://developers.google.com/blockly/](https://developers.google.com/blockly/)
 
-## Licence
+Concept d'origine : Fred Lin (@gasolin [https://github.com/gasolin/BlocklyDuino](https://github.com/gasolin/BlocklyDuino)).
 
-Copyright (C) 2012~2014 Fred Lin gasolin+blockly@gmail.com
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Son projet s'est aussi inspiré de [ardublock](https://github.com/taweili/ardublock) et [modkit](http://www.modk.it/).
+
+Intégration de CodeBender : Julien Rat [https://github.com/julienrat](https://github.com/julienrat)
+
+**Ré-écriture totale et refonte graphique : Olivier Métayer**
