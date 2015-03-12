@@ -22,7 +22,7 @@ function injectBlockly(blockly_el, toolbox_path,rtl) {
 	  // Once file is open, inject blockly into element with the toolbox string
 	  request.onreadystatechange = function() {
 	    if ( (request.readyState == 4) && (request.status == 200) ) {
-	      Blockly.inject(blockly_el, {media: '../media/',
+	      Blockly.inject(blockly_el, {media: 'media/',
 	            rtl: rtl,
 	            toolbox: request.responseText});
 	    }
@@ -36,17 +36,16 @@ function injectBlockly(blockly_el, toolbox_path,rtl) {
 	  }
 };
 
- function arduino_card(){                                                                                     // modified Technozone51
+ function arduino_card(){
   var Cacheobj=document.getElementById("pinout");
   var count = Blockly.mainWorkspace.getAllBlocks().length;
-  if (myFrame.profile["default"]!=myFrame.profile[Cacheobj.options[Cacheobj.selectedIndex].value]) {
-  if (false || window.confirm('Supprimer tout et sélectionner une carte '+myFrame.profile[Cacheobj.options[Cacheobj.selectedIndex].value].description+' ?')) {
-    myFrame.profile["default"]=myFrame.profile[Cacheobj.options[Cacheobj.selectedIndex].value];
-    document.getElementById("cardpicture").innerHTML = '<img src="'+Cacheobj.options[Cacheobj.selectedIndex].value+'.png" border="0" align="left" height=50/>';
+  if (window.profile["default"]!=window.profile[Cacheobj.options[Cacheobj.selectedIndex].value]) {
+  if (false || window.confirm('supprimer tout et sélectionner une carte '+window.profile[Cacheobj.options[Cacheobj.selectedIndex].value].description+' ?')) {
+    window.profile["default"]=window.profile[Cacheobj.options[Cacheobj.selectedIndex].value];
     Blockly.mainWorkspace.clear();
-	renderContent();
+	Code.renderContent();
 	}
-  }  // modified Technozone51
+  }
 }  
 
 /**

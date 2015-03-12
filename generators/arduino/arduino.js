@@ -72,7 +72,7 @@ Blockly.Arduino.ORDER_NONE = 99;          // (...)
  *
  */
 var profile = {
-	arduino: {
+	arduino_uno: {
 	    description: "Arduino Uno ou compatible",
 	    digital: [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["11", "11"], ["12", "12"], ["13", "13"]],
 		PWM : [["3", "3"], ["5", "5"], ["6", "6"], ["9", "9"], ["10", "10"], ["11", "11"]],
@@ -88,8 +88,7 @@ var profile = {
 	},
 }
 //set default profile to arduino standard-compatible board
-profile["default"] = profile["arduino"];
-//alert(profile.default.digital[0]);
+profile["default"] = profile["arduino_uno"];
 
 /**
  * Initialise the database of variable names.

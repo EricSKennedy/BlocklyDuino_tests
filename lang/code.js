@@ -76,9 +76,8 @@ Code.LANGUAGE_NAME = {
 };
 
 Code.TOOLBOX_NAME = {
-		'standard':'Standard',
+		'standard':'standard',
 		'arduino':'Arduino',
-		'bitbloq':'BitBloq',
 		'grove':'Grove',		
 		'technozone51':'TechnoZone51'
 };
@@ -225,21 +224,6 @@ Code.changeToolbox = function() {
 };
 
 /**
- * Load the Prettify CSS and JavaScript.
- */
-Code.importPrettify = function() {
-  //<link rel="stylesheet" href="../prettify.css">
-  //<script src="../prettify.js"></script>
-  var link = document.createElement('link');
-  link.setAttribute('rel', 'stylesheet');
-  link.setAttribute('href', '../prettify.css');
-  document.head.appendChild(link);
-  var script = document.createElement('script');
-  script.setAttribute('src', '../prettify.js');
-  document.head.appendChild(script);
-};
-
-/**
  * User's language (e.g. "en").
  * @type string
  */
@@ -329,9 +313,6 @@ Code.init = function() {
   Code.loadBlocks('');
 
   bindFunctions();
-  
-  // Lazy-load the syntax-highlighting.
-  window.setTimeout(Code.importPrettify, 1);
 };
 
 /**

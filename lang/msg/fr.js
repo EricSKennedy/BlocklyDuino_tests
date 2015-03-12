@@ -17,6 +17,14 @@ Blockly.Msg.CAT_GROVE_IN = "capteurs";
 Blockly.Msg.CAT_GROVE_OUT = "actionneurs";
 Blockly.Msg.CAT_GROVE_LCD = "écran LCD";
 Blockly.Msg.CAT_GROVE_COMM = "communication";
+Blockly.Msg.CAT_TECHNOZONE = "TechnoZone51";  //added march 11th 2015
+Blockly.Msg.CAT_TECHNOZONE_IN = "capteurs";
+Blockly.Msg.CAT_TECHNOZONE_OUT = "actionneurs";
+Blockly.Msg.CAT_TECHNOZONE_MOTORS = "moteurs";
+Blockly.Msg.CAT_TECHNOZONE_SERVO = "servo-moteurs";
+Blockly.Msg.CAT_TECHNOZONE_LCD = "écran LCD";
+Blockly.Msg.CAT_TECHNOZONE_TELEC = "télécommande";
+
 
 var MSG = {
   title: "éditeur graphique pour aider à la programmation des interfaces Arduino",

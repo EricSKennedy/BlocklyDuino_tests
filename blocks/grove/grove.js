@@ -483,27 +483,3 @@ Blockly.Blocks['grove_bluetooth_slave'] = {
     this.setTooltip('Bluetooth V2.0+EDR slave. Support single slave per board');
   }
 };
-//http://www.seeedstudio.com/wiki/File:Twig-Temp%26Humi.jpg
-//http://www.seeedstudio.com/wiki/Grove-_Temperature_and_Humidity_Sensor
-
-//http://www.seeedstudio.com/wiki/Grove_-_125KHz_RFID_Reader
-
-/*
-void setup()
-{
-	pinMode( 3 , OUTPUT);
-	pinMode( 1 , INPUT);
-}
-
-void loop()
-{
-	if (digitalRead( 1))
-	{
-		digitalWrite( 3 , HIGH);
-	}
-	else
-	{
-		digitalWrite( 1 , LOW);
-	}
-}
-*/

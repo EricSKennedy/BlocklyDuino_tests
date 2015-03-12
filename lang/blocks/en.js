@@ -444,3 +444,9 @@ Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_TOOLTIP = "returns the number of degrees 
 Blockly.Msg.ARDUINO_SERIAL_PRINT_HELPURL = "http://www.arduino.cc/en/Serial/Print";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT = "send the data to the serial port :";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP = "sends data over the serial port for sruvaillance by the monitor in ASCII";
+//added march 9th 2015
+Blockly.Msg.GROVE_INOUT_LED_HELPURL = "http://www.seeedstudio.com/wiki/index.php?title=GROVE_-_Starter_Bundle_V1.0b#LED";
+Blockly.Msg.GROVE_INOUT_LED_INPUT1 = "LED";
+Blockly.Msg.GROVE_INOUT_LED_INPUT2 = "on Digital";
+Blockly.Msg.GROVE_INOUT_LED_INPUT3 = "state";
+Blockly.Msg.GROVE_INOUT_LED_TOOLTIP = "Digital output with LED";
