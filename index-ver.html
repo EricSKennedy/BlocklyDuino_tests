@@ -44,38 +44,23 @@
             <b>BlocklyDuino</b> : 
             <span id="title">&eacute;diteur graphique pour aider &agrave; la programmation des interfaces   Arduino</span>
         </p>
-    </div>
-    <div id="divLang">
         <select id="languageMenu"></select>
     </div>
-    <div id="divToolboxMenu">
-        <label id="labelToolbox">choix de la Toolbox : </label><select   id="toolboxMenu"></select>
-		<label id="labelArduinoCard">Arduino card : </label><select id="arduino_card"><select id="pinout" onclick="arduino_card()"><option value="arduino_uno">UNO</option>
-            <option value="arduino_mega">MEGA</option></select>
-    </div>
-    <div id="divButtons">
-        <button id="button_material" class="btn btn-info">
-            <span class="glyphicon glyphicon-flash"></span>
-            <span   id="span_material"> Mat&eacute;riels connect&eacute;s</span>
-        </button>
-        <button id="button_delete" class="btn btn-danger">
-            <span class="glyphicon glyphicon-erase"></span>
-            <span   id="span_delete"> R&eacute;initialiser</span>
-        </button>
-        <a id="button_saveXML" class='btn btn-success' href="#" role='button'>
-          <span class="glyphicon glyphicon-floppy-save"></span>
-          <span id="span_saveXML"> Sauver en fichier XML</span>
-         </a>
-        <button id="button_fakeload" class="btn btn-success">
-            <span class="glyphicon glyphicon-floppy-open"></span>
-            <span   id="span_fakeload"> Charger un fichier XML</span>
-        </button>
-        <input type="file" id="load" style="display: none;" />
-    </div>
 
+    <div id="divBody">
     <!-- Nav tabs -->
-    <div id="ulTabpanel">
-        <ul class="nav nav-pills nav-stacked" role="tablist">
+    <div id="menuPanel">
+			<label id="labelArduinoCard"></label> 
+			<select id="pinout">
+				<option value="arduino_uno">UNO</option>
+				<option value="arduino_mega">MEGA</option>
+			</select>
+			<br/>
+			<button id="btn_config" class="btn btn-warning" data-toggle="modal" data-target="#configModal">
+				<span class="glyphicon glyphicon-cog"> </span>
+				<span id="span_config"> </span>
+			</button>
+			<ul class="nav nav-pills nav-stacked" role="tablist">
             <li role="presentation" id="tab_blocks" class="active">
                  <a href="#content_blocks" aria-controls="content_blocks" role="tab"    data-toggle="tab">
                      <span class="glyphicon glyphicon-home"></span>
@@ -101,17 +86,38 @@
                  </a>
              </li>
         </ul>
+    <div id="divButtons">
+        <a id="button_saveXML" class='btn btn-success' href="#" role='button'>
+          <span class="glyphicon glyphicon-floppy-save"></span>
+          <span id="span_saveXML"> </span>
+         </a>
+         <br/>
+        <button id="button_fakeload" class="btn btn-success">
+            <span class="glyphicon glyphicon-floppy-open"></span>
+            <span   id="span_fakeload"> </span>
+        </button>
+        <input type="file" id="load" style="display: none;" />
+    </div>
     </div>
     <div id="divTabpanel" role="tabpanel">
         <!-- Tab panes -->
         <div id="content_area" class="tab-content">
-            <div id="content_blocks" class="tab-pane active"></div>
-            <div id="content_arduino" class="tab-pane">
+				<div id="content_blocks" class="tab-pane active"
+					style="position: relative;">
+                    <button id="btn_delete" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-erase"> </span>
+                        <span id="span_delete"> </span>
+                    </button>
+					<button id="btn_size" class="btn btn-default">
+						<span id="icon_btn_size" class="glyphicon glyphicon-new-window"> </span>
+					</button>
+				</div>
+				<div id="content_arduino" class="tab-pane">
                 <select id="cb_cf_boards"></select>
                 <select id="cb_cf_ports"></select>
-                <button id="cb_cf_verify_btn" class="btn btn-primary">v&eacute;rifier le code</button>
-                <button id="cb_cf_flash_btn" class="btn btn-primary">t&eacute;l&eacute;verser dans l'Arduino !</button>
-                <a id="button_saveArduino" class='btn btn-primary' href="#" role='button'>sauvegarde en fichier INO</a>
+                <button id="cb_cf_verify_btn" class="btn btn-primary"></button>
+                <button id="cb_cf_flash_btn" class="btn btn-primary"></button>
+                <a id="button_saveArduino" class='btn btn-primary' href="#" role='button'></a>
                 <pre id="pre_arduino"></pre>
                 <div id="debug_arduino"></div>
             </div>
@@ -125,10 +131,335 @@
             </div>
         </div>
     </div>
+    </div>
 
     <div id="divFooter" role="tabpanel">
         <a href="https://github.com/technologiescollege/BlocklyDuino">
               <i>BlocklyDuino sur Github</i></a> <i> - traductions et adaptations Sébastien Canet, intégration CodeBender par Julien Rat, surboostés par l'incroyable travail d'Olivier M&eacute;tayer !</i>
     </div>
+
+<div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="configModalLabel"></h4>
+      </div>
+      
+      <input type="checkbox" name="select_all" id="select_all"/> <span id="span_select_all"> </span><br/>
+      
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer">
+        <button id="btn_close" type="button" class="btn btn-default" data-dismiss="modal" ></button>
+        <button id="btn_valid" type="button" class="btn btn-primary"></button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<xml id="CAT_LOGIC" style="display: none">
+    <category name="CAT_LOGIC">
+        <block type="controls_if"></block>
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>        
+    </category>
+</xml>
+<xml id="CAT_LOOPS" style="display: none">
+    <category name="CAT_LOOPS">
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+                <block type="math_number">
+                    <field name="NUM">10</field>
+                </block>
+            </value>
+        </block>
+        <block type="controls_whileUntil"></block>
+        <block type="controls_for">
+            <field name="VAR">i</field>
+            <value name="FROM">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="TO">
+                <block type="math_number">
+                    <field name="NUM">10</field>
+                </block>
+            </value>
+            <value name="BY">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="controls_forEach"></block>
+        <block type="controls_flow_statements"></block>
+    </category>
+</xml>
+<xml id="CAT_MATH" style="display: none">
+    <category name="CAT_MATH">
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+        <block type="math_single"></block>
+        <block type="math_trig"></block>
+        <block type="math_constant"></block>
+        <block type="math_number_property"></block>
+        <block type="math_change">
+            <value name="DELTA">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="math_round"></block>
+        <block type="math_on_list"></block>
+        <block type="math_modulo"></block>
+        <block type="math_constrain">
+            <value name="LOW">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="HIGH">
+                <block type="math_number">
+                    <field name="NUM">100</field>
+                </block>
+            </value>
+        </block>
+        <block type="math_random_int">
+            <value name="FROM">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="TO">
+                <block type="math_number">
+                    <field name="NUM">100</field>
+                </block>
+            </value>
+        </block>
+        <block type="math_random_float"></block>
+    </category>
+</xml>
+<xml id="CAT_LIST" style="display: none">
+    <category name="CAT_LIST">
+        <block type="lists_create_empty"></block>
+        <block type="lists_create_with"></block>
+        <block type="lists_repeat">
+            <value name="NUM">
+                <block type="math_number">
+                    <field name="NUM">5</field>
+                </block>
+            </value>
+        </block>
+        <block type="lists_length"></block>
+        <block type="lists_isEmpty"></block>
+        <block type="lists_indexOf"></block>
+        <block type="lists_getIndex"></block>
+        <block type="lists_setIndex"></block>
+    </category>
+</xml>
+<xml id="CAT_TEXT" style="display: none">
+    <category name="CAT_TEXT">
+        <block type="text"></block>
+        <block type="text_join"></block>
+        <block type="text_append">
+            <value name="TEXT">
+                <block type="text"></block>
+            </value>
+        </block>
+        <block type="text_length"></block>
+        <block type="text_isEmpty"></block>
+        <block type="text_indexOf">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR" class="textVar">...</field>
+                </block>
+            </value>
+        </block>
+        <block type="text_charAt">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR" class="textVar">...</field>
+                </block>
+            </value>
+        </block>
+        <block type="text_getSubstring">
+            <value name="STRING">
+                <block type="variables_get">
+                    <field name="VAR" class="textVar">...</field>
+                </block>
+            </value>
+        </block>
+        <block type="text_changeCase"></block>
+        <block type="text_trim"></block>
+        <block type="text_print"></block>
+        <block type="text_prompt_ext">
+            <value name="TEXT">
+                <block type="text"></block>
+            </value>
+        </block>
+    </category>
+</xml>
+<xml id="CAT_COLOR" style="display: none">
+    <category name="CAT_COLOR">
+        <block type="colour_picker"></block>
+        <block type="colour_random"></block>
+        <block type="colour_rgb">
+            <value name="RED">
+                <block type="math_number">
+                    <field name="NUM">100</field>
+                </block>
+            </value>
+            <value name="GREEN">
+                <block type="math_number">
+                    <field name="NUM">50</field>
+                </block>
+            </value>
+            <value name="BLUE">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+        </block>
+        <block type="colour_blend">
+            <value name="COLOUR1">
+                <block type="colour_picker">
+                    <field name="COLOUR">#ff0000</field>
+                </block>
+            </value>
+            <value name="COLOUR2">
+                <block type="colour_picker">
+                    <field name="COLOUR">#3333ff</field>
+                </block>
+            </value>
+            <value name="RATIO">
+                <block type="math_number">
+                    <field name="NUM">0.5</field>
+                </block>
+            </value>
+        </block>
+    </category> 
+</xml>
+<xml id="CAT_VARIABLES" style="display: none">
+    <category name="CAT_VARIABLES" custom="VARIABLE"></category>
+</xml>
+<xml id="CAT_FUNCTIONS" style="display: none">
+    <category name="CAT_FUNCTIONS" custom="PROCEDURE"></category>
+</xml>
+<xml id="CAT_ARDUINO" style="display: none">
+    <sep></sep>
+    <category name="CAT_ARDUINO">
+        <category name="CAT_ARDUINO_IN">
+            <block type="inout_analog_read"></block>
+            <block type="inout_digital_read"></block>
+        </category>
+        <category name="CAT_ARDUINO_OUT">
+            <block type="base_delay"></block>
+            <block type="base_map"></block>
+            <block type="inout_PWM_write"></block>
+            <block type="inout_analog_write"></block>
+            <block type="inout_buildin_led"></block>
+            <block type="inout_digital_write"></block>
+            <block type="inout_onoff"></block>
+            <block type="tone"></block>
+            <block type="notone"></block>
+            <block type="serial_print"></block>
+        </category>
+        <category name="CAT_ARDUINO_SERVO">
+            <block type="servo_move"></block>
+            <block type="servo_read_degrees"></block>
+        </category>
+    </category>
+</xml>
+<xml id="CAT_GROVE" style="display: none">
+    <sep></sep>
+    <category name="CAT_GROVE">
+        <category name="CAT_GROVE_IN">
+            <block type="grove_button"></block>
+            <block type="grove_rotary_angle"></block>
+            <block type="grove_tilt_switch"></block>
+            <block type="grove_temporature_sensor"></block>
+            <block type="grove_sound_sensor"></block>
+            <block type="grove_pir_motion_sensor"></block>
+            <block type="grove_line_finder"></block>
+            <block type="grove_ultrasonic_ranger"></block>
+            <block type="grove_thumb_joystick"></block>
+        </category>
+        <category name="CAT_GROVE_OUT">
+            <block type="grove_led"></block>
+            <block type="grove_piezo_buzzer"></block>
+            <block type="grove_relay"></block>
+            <block type="grove_motor_shield"></block>
+            <block type="grove_rgb_led"></block>
+        </category>
+        <category name="CAT_GROVE_LCD">
+            <block type="grove_serial_lcd_print"></block>
+            <block type="grove_serial_lcd_power"></block>
+            <block type="grove_serial_lcd_effect"></block>
+        </category>
+        <category name="CAT_GROVE_COMM">
+            <block type="grove_bluetooth_slave"></block>
+        </category>
+    </category>
+</xml>
+<xml id="CAT_TECHNOZONE" style="display: none">
+    <sep></sep>
+    <category name="CAT_TECHNOZONE">
+        <category name="CAT_TECHNOZONE_IN">
+            <block type="technozone_btn1white"></block>
+            <block type="technozone_btn1black"></block>
+            <block type="technozone_btn1green"></block>
+            <block type="technozone_btn1red"></block>
+            <block type="technozone_switch1"></block>
+            <block type="technozone_ils1"></block>
+            <block type="technozone_proxi1"></block>
+            <block type="technozone_bari1"></block>
+            <block type="technozone_lig1"></block>
+            <block type="technozone_cmouv1"></block>
+            <block type="technozone_potar1"></block>
+            <block type="technozone_ctn1"></block>
+            <block type="technozone_ldr1"></block>
+        </category>
+        <category name="CAT_TECHNOZONE_OUT">
+            <block type="technozone_led1red"></block>
+            <block type="technozone_led1green"></block>
+            <block type="technozone_led1yellow"></block>
+            <block type="technozone_relay1"></block>
+            <block type="technozone_buzzer1"></block>
+            <block type="technozone_sonar1"></block>
+        </category>
+        <category name="CAT_TECHNOZONE_MOTORS">
+            <block type="technozone_pap1cc"></block>
+            <block type="technozone_pap1relatif"></block>
+            <block type="technozone_pap1init"></block>
+            <block type="technozone_pap1busy"></block>
+            <block type="technozone_mot2"></block>
+            <block type="technozone_mot1easybot1"></block>
+            <block type="technozone_mot1easycon1"></block>
+        </category>
+        <category name="CAT_TECHNOZONE_SERVO">
+            <block type="technozone_servo1"></block>
+            <block type="servo_read_degrees"></block>
+        </category>
+        <category name="CAT_TECHNOZONE_LCD">
+            <block type="technozone_lcdinit"></block>
+            <block type="technozone_lcdspecial"></block>
+            <block type="technozone_lcdclear"></block>
+            <block type="technozone_lcdwrite"></block>
+        </category>
+        <category name="CAT_TECHNOZONE_TELEC">
+            <block type="technozone_telec2"></block>
+            <block type="technozone_telec1"></block>
+            <block type="technozone_telecsetup"></block>
+            <block type="technozone_telecinit"></block>
+            <block type="technozone_telecflush"></block>
+        </category>
+    </category>
+</xml>    
 </body>
 </html>

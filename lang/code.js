@@ -1,4 +1,6 @@
 /**
+ * Based on 
+ * 
  * Blockly Demos: Code
  *
  * Copyright 2012 Google Inc.
@@ -75,16 +77,18 @@ Code.LANGUAGE_NAME = {
   'zh-hant': '正體中文'
 };
 
-Code.TOOLBOX_NAME = {
-		'standard':'standard',
-		'arduino':'Arduino',
-		'grove':'Grove',		
-		'technozone51':'TechnoZone51'
-};
 /**
  * List of RTL languages.
  */
 Code.LANGUAGE_RTL = ['ar', 'fa', 'he'];
+
+/**
+ * List of tab names.
+ * @private
+ */
+Code.TABS_ = ['blocks', 'arduino', 'term', 'xml'];
+
+Code.selected = 'blocks';
 
 /**
  * Extracts a parameter from the URL.
@@ -111,17 +115,43 @@ Code.getLang = function() {
   return lang;
 };
 
-/**
- * Get the toolbox selected from the URL.
- * @return {string} selectd toolbox.
+/*
+ * Build the xml using toolboxes checked in config modal and stored in session 
  */
-Code.getToolbox = function() {
-  var toolbox = Code.getStringParamFromUrl('toolbox', '');
-  if (Code.TOOLBOX_NAME[toolbox] === undefined) {
-    // Default to Arduino.
-	  toolbox = 'arduino';
+Code.buildToolbox = function() {
+	var loadIds = window.sessionStorage.toolboxids;
+
+	// set the default toolbox if none in session
+	if (loadIds === undefined || loadIds === "") {
+		loadIds = "CAT_LOGIC,CAT_LOOPS";
+		window.sessionStorage.toolboxids = loadIds;
+	}
+	
+	var xmlValue = '<xml>';
+	var xmlids = loadIds.split(",");
+	var element;
+	for (var i = 0; i < xmlids.length; i++) {
+		element = document.getElementById(xmlids[i]);
+		if (element != null) {
+			xmlValue += element.innerHTML;
+		}
+	}
+	xmlValue += '</xml>';
+
+	return xmlValue;
+};
+
+/**
+ * Get the size selected from the URL.
+ * 
+ * @return {int} selectd size.
+ */
+Code.getSize = function() {
+  var size = Code.getStringParamFromUrl('size', '');
+  if (size != 'max') {
+	  size = '';
   }
-  return toolbox;
+  return size;
 };
 
 /**
@@ -144,10 +174,7 @@ Code.loadBlocks = function(defaultXml) {
     // Restarting Firefox fixes this, so it looks like a bug.
     var loadOnce = null;
   }
-  if ('BlocklyStorage' in window && window.location.hash.length > 1) {
-    // An href with #key trigers an AJAX call to retrieve saved blocks.
-    BlocklyStorage.retrieveXml(window.location.hash.substring(1));
-  } else if (loadOnce) {
+  if (loadOnce) {
     // Language switching stores the blocks during the reload.
 	delete window.sessionStorage.loadOnceBlocks;
     var xml = Blockly.Xml.textToDom(loadOnce);
@@ -156,11 +183,7 @@ Code.loadBlocks = function(defaultXml) {
     // Load the editor with default starting blocks.
     var xml = Blockly.Xml.textToDom(defaultXml);
     Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
-  } else if ('BlocklyStorage' in window) {
-    // Restore saved blocks in a separate thread so that subsequent
-    // initialization is not affected from a failed load.
-    window.setTimeout(BlocklyStorage.restoreBlocks, 0);
-  }
+  } 
 };
 
 /**
@@ -194,9 +217,9 @@ Code.changeLanguage = function() {
 };
 
 /**
- * Save the blocks and reload with a different toolbox.
+ * Maximize/Minimize content blocks div 
  */
-Code.changeToolbox = function() {
+Code.changeSize = function() {
   // Store the blocks for the duration of the reload.
   // This should be skipped for the index page, which has no blocks and does
   // not load Blockly.
@@ -207,16 +230,14 @@ Code.changeToolbox = function() {
     window.sessionStorage.loadOnceBlocks = text;
   }
 
-  var toolboxMenu = document.getElementById('toolboxMenu');
-  var newToolbox = encodeURIComponent(
-		  toolboxMenu.options[toolboxMenu.selectedIndex].value);
   var search = window.location.search;
   if (search.length <= 1) {
-    search = '?toolbox=' + newToolbox;
-  } else if (search.match(/[?&]toolbox=[^&]*/)) {
-    search = search.replace(/([?&]toolbox=)[^&]*/, '$1' + newToolbox);
+    search = '?size=max';
+  } else if (search.match(/[?&]size=[^&]*/)) {
+    search = search.replace(/([?&]size=)[^&]*/, '');
+    search = search.replace(/\&/, '?');
   } else {
-    search = search.replace(/\?/, '?toolbox=' + newToolbox + '&');
+    search = search.replace(/\?/, '?size=max&');
   }
 
   window.location = window.location.protocol + '//' +
@@ -228,21 +249,6 @@ Code.changeToolbox = function() {
  * @type string
  */
 Code.LANG = Code.getLang();
-
-/**
- * User's toolbox (e.g. "standard").
- * @type string
- */
-Code.TOOLBOX = Code.getToolbox();
-
-/**
- * List of tab names.
- * @private
- */
-//Code.TABS_ = ['blocks', 'javascript', 'python', 'dart', 'xml'];
-Code.TABS_ = ['blocks', 'arduino', 'term', 'xml'];
-
-Code.selected = 'blocks';
 
 /**
  * Switch the visible pane when a tab is clicked.
@@ -286,33 +292,67 @@ Code.renderContent = function() {
  * Initialize Blockly.  Called on page load.
  */
 Code.init = function() {
-  Code.initLanguage();
+	Code.initLanguage();
 
-  // Disable the link button if page isn't backed by App Engine storage.
-  var linkButton = document.getElementById('linkButton');
-  if ('BlocklyStorage' in window) {
-    BlocklyStorage['HTTPREQUEST_ERROR'] = MSG['httpRequestError'];
-    BlocklyStorage['LINK_ALERT'] = MSG['linkAlert'];
-    BlocklyStorage['HASH_ERROR'] = MSG['hashError'];
-    BlocklyStorage['XML_ERROR'] = MSG['xmlError'];
-    bindClick(linkButton, BlocklyStorage.link);
-  } else if (linkButton) {
-    linkButton.className = 'disabled';
-  }
+	if (Code.getSize() == 'max') {
+		// place div on top
+		var divBody = document.getElementById("divBody");
+		divBody.style.top = "0px";
 
-  injectBlockly(document.getElementById('content_blocks'), 'blocks/toolbox/'+ Code.getToolbox() + '.xml', Code.isRtl());
-  
-  Code.tabClick(Code.selected);
-  Blockly.fireUiEvent(window, 'resize');
-  
-  if ('BlocklyStorage' in window) {
-    // Hook a save function onto unload.
-    BlocklyStorage.backupOnUnload();
-  }
+		// maximize div
+		var divTabpanel = document.getElementById("divTabpanel");
+		divTabpanel.style.width = "100%";
+		divTabpanel.style.height = "100%";
+		divTabpanel.style.position = "absolute";
+		divTabpanel.style.paddingTop = "0px";
 
-  Code.loadBlocks('');
+		// hide Title
+		var divTitle = document.getElementById("divTitre");
+		divTitle.style.display = "none";
 
-  bindFunctions();
+		// hide footer
+		var divFooter = document.getElementById("divFooter");
+		divFooter.style.display = "none";
+
+		// change maximize to minimize
+		var icon_btn_size = document.getElementById("icon_btn_size");
+		icon_btn_size.className += " rotate180";
+	}
+
+	// build Blockly ...
+	Blockly.inject(document.getElementById('content_blocks'), {
+		media : 'media/',
+		rtl : Code.isRtl(),
+		toolbox : Code.buildToolbox()
+	});
+
+	// set the tab
+	Code.tabClick(Code.selected);
+
+	// load blocks stored in session
+	Code.loadBlocks('');
+
+	// bind events to html elements
+	bindFunctions();
+
+	// load the compilerflasher module
+	$(document).ready(
+			function() {
+				compilerflasher = new compilerflasher(getFiles);
+				compilerflasher.on("pre_verify", function() {
+					$("#debug_arduino").html(MSG['pre_verify']);
+				});
+				compilerflasher.on("verification_succeed",
+						function(binary_size) {
+							$("#debug_arduino").html(
+									MSG['verification_succeed'] + binary_size);
+						});
+				compilerflasher.on("verification_failed",
+						function(error_output) {
+							$("#debug_arduino").html(
+									MSG['verification_failed'] + error_output);
+						});
+			});
 };
 
 /**
@@ -339,23 +379,6 @@ Code.initLanguage = function() {
   };
   languages.sort(comp);
 
-  // Populate the toolbox selection menu.
-  var toolboxes = [];
-  for (var toolbox in Code.TOOLBOX_NAME) {
-    toolboxes.push([Code.TOOLBOX_NAME[toolbox], toolbox]);
-  }
-  var toolboxMenu = document.getElementById('toolboxMenu');
-  toolboxMenu.options.length = 0;
-  for (var i = 0; i < toolboxes.length; i++) {
-    var tuple = toolboxes[i];
-    var option = new Option(tuple[0], tuple[1]);
-    if (tuple[1] == Code.TOOLBOX) {
-      option.selected = true;
-    }
-    toolboxMenu.options.add(option);
-  }
-  toolboxMenu.addEventListener('change', Code.changeToolbox,true);
-  
 // Populate the language selection menu.
   var languageMenu = document.getElementById('languageMenu');
   languageMenu.options.length = 0;
@@ -373,10 +396,9 @@ Code.initLanguage = function() {
   // Inject language strings.
   document.getElementById('title').textContent = MSG['title'];
 
-  document.getElementById('labelToolbox').textContent = MSG['labelToolbox'];
+  document.getElementById('span_config').textContent = MSG['span_config'];
   document.getElementById('labelArduinoCard').textContent = MSG['labelArduinoCard'];
 
-  document.getElementById('span_material').textContent = MSG['span_material'];
   document.getElementById('span_delete').textContent = MSG['span_delete'];
   document.getElementById('span_saveXML').textContent = MSG['span_saveXML'];
   document.getElementById('span_fakeload').textContent = MSG['span_fakeload'];
@@ -390,6 +412,11 @@ Code.initLanguage = function() {
   document.getElementById('cb_cf_flash_btn').textContent = MSG['cb_cf_flash_btn'];
   document.getElementById('button_saveArduino').textContent = MSG['button_saveArduino'];
   document.getElementById('cb_cf_serial_monitor_connect').textContent = MSG['cb_cf_serial_monitor_connect'];
+
+  document.getElementById('configModalLabel').textContent = MSG['configModalLabel'];
+  document.getElementById('span_select_all').textContent = MSG['span_select_all'];
+  document.getElementById('btn_close').textContent = MSG['btn_close'];
+  document.getElementById('btn_valid').textContent = MSG['btn_valid'];
 
 };
 

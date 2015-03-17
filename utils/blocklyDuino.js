@@ -1,46 +1,11 @@
 /**
  * Choose Arduino card : UNO or MEGA
  */
- 
-/**
- * Injects Blockly into a given HTML element. Reads the toolbox from an XMl
- * file.
- * @param {!Element} el Element to inject Blockly into.
- * @param {!string} toolbox_path String containing the toolbox XML file path.
- */
-function injectBlockly(blockly_el, toolbox_path,rtl) {
-	  // Create a an XML HTTP request
-	  var request = createAJAX();
-
-	  // If file run locally Internet explorer fails here
-	  try {
-	    request.open("GET", toolbox_path, false);
-	  } catch(e) {
-	    $('#not_running_dialog').openModal();
-	  }
-
-	  // Once file is open, inject blockly into element with the toolbox string
-	  request.onreadystatechange = function() {
-	    if ( (request.readyState == 4) && (request.status == 200) ) {
-	      Blockly.inject(blockly_el, {media: 'media/',
-	            rtl: rtl,
-	            toolbox: request.responseText});
-	    }
-	  };
-
-	  // If file run locally Chrome will fail here
-	  try {
-	    request.send();
-	  } catch(e) {
-	    $('#not_running_dialog').openModal();
-	  }
-};
-
- function arduino_card(){
+  function arduino_card(){
   var Cacheobj=document.getElementById("pinout");
   var count = Blockly.mainWorkspace.getAllBlocks().length;
   if (window.profile["default"]!=window.profile[Cacheobj.options[Cacheobj.selectedIndex].value]) {
-  if (false || window.confirm('supprimer tout et sélectionner une carte '+window.profile[Cacheobj.options[Cacheobj.selectedIndex].value].description+' ?')) {
+  if (false || window.confirm(MSG['arduino_card']+' '+window.profile[Cacheobj.options[Cacheobj.selectedIndex].value].description+' ?')) {
     window.profile["default"]=window.profile[Cacheobj.options[Cacheobj.selectedIndex].value];
     Blockly.mainWorkspace.clear();
 	Code.renderContent();
@@ -101,28 +66,12 @@ function saveArduinoFile() {
 
 
 /*
- * Charge le code Arduino depuis pre_arduino
+ * Loas Arduino code from component pre_arduino
  */
 function getFiles(){
     var code = document.getElementById('pre_arduino').textContent;
     code=code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return {"sketch.ino": code }
-}
-
-/*
- * Verifie le code Arduino grace au compilerflasher
- */
-function verifCodeArduino(){
-    compilerflasher = new compilerflasher(getFiles);
-    compilerflasher.on("pre_verify", function(){
-		$("#debug_arduino").html(MSG['pre_verify']);
-    });
-    compilerflasher.on("verification_succeed", function(binary_size){
-        $("#debug_arduino").html(MSG['verification_succeed'] + binary_size);
-    });
-    compilerflasher.on("verification_failed", function(error_output){
-        $("#debug_arduino").html(MSG['verification_failed'] + error_output);
-    });
 }
 
 /**
@@ -144,11 +93,11 @@ function load(event) {
       try {
         var xml = Blockly.Xml.textToDom(target.result);
       } catch (e) {
-        alert('erreur dans le fichier XML:\n' + e);
+        alert(MSG['xmlError']+'\n' + e);
         return;
       }
       var count = Blockly.mainWorkspace.getAllBlocks().length;
-      if (count && confirm('voulez-vous remplacer les blocs actuels ?\n"Annuler" les fera fusionner.')) {
+      if (count && confirm(MSG['xmlLoad'])) {
         Blockly.mainWorkspace.clear();
       }
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
@@ -165,22 +114,10 @@ function load(event) {
  */
 function discard() {
   var count = Blockly.mainWorkspace.getAllBlocks().length;
-  if (count < 2 || window.confirm('effacer tous les ' + count + ' blocs ?')) {
+  if (count < 2 || window.confirm(MSG['discard'].replace('%1', count))) {
     Blockly.mainWorkspace.clear();
-    renderContent();
+    Code.renderContent();
   }
-}
-
-/*
- * auto save and restore blocks
- */
-function auto_save_and_restore_blocks() {
-  // Restore saved blocks in a separate thread so that subsequent
-  // initialization is not affected from a failed load.
-  window.setTimeout(restore_blocks, 0);
-  // Hook a save function onto unload.
-  bindEvent(window, 'unload', backup_blocks);
-
 }
 
 /**
@@ -197,31 +134,6 @@ function bindEvent(element, name, func) {
   } else if (element.attachEvent) {  // IE
     element.attachEvent('on' + name, func);
   }
-}
-
-/**
- * Creates an AJAX request 
- * @return An XML HTTP Request
- */
-function createAJAX() {
-	  var request;
-	  try {
-	    // Firefox, Chrome, IE7+, Opera, Safari
-	    request = new XMLHttpRequest();
-	  } catch (e) {
-	    try {
-	      // IE6 and earlier
-	      request = new ActiveXObject("Msxml2.XMLHTTP");
-	    } catch (e) {
-	      try {
-	        request = new ActiveXObject("Microsoft.XMLHTTP");
-	      } catch (e) {
-	        throw 'Your browser does not support AJAX. Cannot load toolbox';
-	        request = null;
-	      }
-	    }
-	  }
-	  return request;
 }
 
 function uploadCode(code, callback) {
@@ -314,15 +226,15 @@ function bindClick(el, func) {
 
 /**
  * Binds functions to each of the buttons, nav links, and related.
- * @private
  */
 function bindFunctions() {
   // Navigation buttons
-  bindClick('button_delete', discard);
-//  bindClick('button_material', shield);
+  bindClick('btn_delete', discard);
   bindClick('button_saveXML',  saveXmlFile);
   bindClick('button_saveArduino',  saveArduinoFile);
-  bindClick('cb_cf_verify_btn',  verifCodeArduino);
+
+  var pinout = document.getElementById('pinout');
+  bindEvent(pinout, 'change', arduino_card);
 
   var loadInput = document.getElementById('load');
   bindEvent(loadInput, 'change', load);
@@ -334,4 +246,101 @@ function bindFunctions() {
 		        function(name_) {return function() {Code.tabClick(name_);};}(name));
   }
 
+  bindClick('btn_size',  Code.changeSize);
+  bindClick('btn_config',  openConfigToolbox);
+
+  bindClick('select_all',  checkAll);
+  bindClick('btn_valid',  changeToolbox);
+  
 };
+
+/**
+ * checks all checkboxes in modal "configModal"
+ */
+function checkAll() {
+    if(this.checked) {
+        // Iterate each checkbox
+        $('#modal-body input:checkbox').each(function() {
+            this.checked = true;
+        });
+    } 
+      else {
+      $('#modal-body input:checkbox').each(function() {
+            this.checked = false;
+        });
+    }
+}
+
+/**
+ * Build modal to configure ToolBox
+ */
+function openConfigToolbox() {
+	var modalbody = document.getElementById("modal-body");
+	// load all xml toolboxes
+	var xmls = document.getElementsByTagName("xml");
+	// load the toolboxes id's stored in session
+	var loadIds = window.sessionStorage.toolboxids;
+	
+	if (loadIds === undefined) {
+		loadIds = "CAT_LOGIC";
+	}
+
+	var i, n, ligne;
+	// clear modal
+	modalbody.innerHTML = "";
+	// create a checkbox for each toolbox 
+	for (i = 0; i < xmls.length; i++) {
+		n = loadIds.search(xmls[i].id);
+		// checks if toolbox was already chosen
+		if (n >= 0) {
+			ligne = '<input type="checkbox" checked="checked" name="checkbox_'
+					+ i + '" id="checkbox_' + xmls[i].id + '"/> '
+					+ Blockly.Msg[xmls[i].id] + '<br/>';
+		} else {
+			ligne = '<input type="checkbox" name="checkbox_' + i
+					+ '" id="checkbox_' + xmls[i].id + '"/> '
+					+ Blockly.Msg[xmls[i].id] + '<br/>';
+		}
+		modalbody.innerHTML += ligne;
+	}
+
+	// checks if "selec_all" checkbox was already chosen
+	n = loadIds.search("select_all");
+	if (n >= 0) {
+		document.getElementById("select_all").checked = true;
+	}
+}
+
+/**
+ * Change the ToolBox following the chosen configuration
+ */
+function changeToolbox() {
+	// Store the blocks for the duration of the reload.
+	// This should be skipped for the index page, which has no blocks and does
+	// not load Blockly.
+	// MSIE 11 does not support sessionStorage on file:// URLs.
+	if (typeof Blockly != 'undefined' && window.sessionStorage) {
+		var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+		var text = Blockly.Xml.domToText(xml);
+		window.sessionStorage.loadOnceBlocks = text;
+	}
+	
+	// read the toolboxes id's from the checkboxes
+	var toolboxIds = [];
+	$('#modal-body input:checkbox').each(function() {
+		if (this.checked == true) {
+			var xmlid = this.id;
+			toolboxIds.push(xmlid.replace("checkbox_", ""));
+		}
+	});
+
+	if (document.getElementById("select_all").checked == true) {
+			toolboxIds.push("select_all");
+		}
+
+	// store id's in session
+	window.sessionStorage.toolboxids = toolboxIds;
+
+	// reload ...
+	window.location = window.location;
+}

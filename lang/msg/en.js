@@ -1,29 +1,7 @@
-Blockly.Msg.CAT_LOOPS = "Loops";
-Blockly.Msg.CAT_LOGIC = "Logic";
-Blockly.Msg.CAT_IF = "If";
-Blockly.Msg.CAT_BOOL = "Boolean";
-Blockly.Msg.CAT_MATH = "Math";
-Blockly.Msg.CAT_TEXT = "Text";
-Blockly.Msg.CAT_LIST = "Lists";
-Blockly.Msg.CAT_COLOR = "Color";
-Blockly.Msg.CAT_VARIABLES = "Variables";
-Blockly.Msg.CAT_FUNCTIONS = "Functions";
-Blockly.Msg.CAT_ARDUINO = "Arduino";
-Blockly.Msg.CAT_ARDUINO_IN = "In";
-Blockly.Msg.CAT_ARDUINO_OUT = "Out";
-Blockly.Msg.CAT_ARDUINO_SERVO = "Servo-Motor";
-
-Blockly.Msg.CAT_GROVE = "Grove";  //added march 9th 2015
-Blockly.Msg.CAT_GROVE_IN = "In";
-Blockly.Msg.CAT_GROVE_OUT = "Out";
-Blockly.Msg.CAT_GROVE_LCD = "LCD screen";
-Blockly.Msg.CAT_GROVE_COMM = "Communication";
-
 var MSG = {
   title: "graphic editor helping Arduino interfaces programming",
-  labelToolbox: "Toolbox choice :",
   labelArduinoCard: "Arduino card :",
-  span_material:" Connected equipment",
+  span_config: " configure blocks",
   span_delete: " Delete blocks",
   span_saveXML:" Save to XML file",
   span_fakeload:" Load XML file",
@@ -35,15 +13,21 @@ var MSG = {
   a_arduino:" Arduino Code",
   a_term:" Serial Console",
   a_xml:" XML Translation",
+  configModalLabel:"toolbox configuration",
+  span_select_all:"all",
+  btn_close:"close",
+  btn_valid:"validate",
   httpRequestError: "There was a problem with the request.",
   linkAlert: "Share your blocks with this link:\n\n%1",
   hashError: "Sorry, '%1' doesn't correspond with any saved program.",
   xmlError: "Could not load your saved file. Perhaps it was created with a different version of Blockly?",
+  xmlLoad:"Do you want to replace the current blocks? \n 'Cancel' will merge",
   timeout: "Maximum execution iterations exceeded.",
   badCode: "Program error :\n%1",
-  discard: "Delete all %1 blocks?",
+  discard: "Delete all blocks (%1 blocks) ?",
   badXml: "Error parsing XML:\n%1\n\nSelect 'OK' to abandon your changes or 'Cancel' to further edit the XML.",
   pre_verify:"Verification .... ",
   verification_succeed: "Verification completed successfully. Size : ",
-  verification_failed:"Verification failed. Erreur : "
+  verification_failed:"Verification failed. Erreur : ",
+  arduino_card:"delete all and select a card"
 };

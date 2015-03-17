@@ -392,6 +392,35 @@ Blockly.Msg.CONTROLS_IF_ELSEIF_TITLE_ELSEIF = Blockly.Msg.CONTROLS_IF_MSG_ELSEIF
 Blockly.Msg.TEXT_APPEND_VARIABLE = Blockly.Msg.VARIABLES_DEFAULT_NAME;
 Blockly.Msg.CONTROLS_IF_ELSE_TITLE_ELSE = Blockly.Msg.CONTROLS_IF_MSG_ELSE;
 
+Blockly.Msg.CAT_LOOPS = "boucles";
+Blockly.Msg.CAT_LOGIC = "logique";
+Blockly.Msg.CAT_IF = "si...";
+Blockly.Msg.CAT_BOOL = "booléen";
+Blockly.Msg.CAT_MATH = "maths";
+Blockly.Msg.CAT_TEXT = "texte";
+Blockly.Msg.CAT_LIST = "listes";
+Blockly.Msg.CAT_COLOR = "couleurs";
+Blockly.Msg.CAT_VARIABLES = "variables";
+Blockly.Msg.CAT_FUNCTIONS = "fonctions";
+Blockly.Msg.CAT_ARDUINO = "arduino";
+Blockly.Msg.CAT_ARDUINO_IN = "entrées";
+Blockly.Msg.CAT_ARDUINO_OUT = "sorties";
+Blockly.Msg.CAT_ARDUINO_SERVO = "servo-moteur";
+
+Blockly.Msg.CAT_GROVE = "grove";  //added march 9th 2015
+Blockly.Msg.CAT_GROVE_IN = "capteurs";
+Blockly.Msg.CAT_GROVE_OUT = "actionneurs";
+Blockly.Msg.CAT_GROVE_LCD = "écran LCD";
+Blockly.Msg.CAT_GROVE_COMM = "communication";
+
+Blockly.Msg.CAT_TECHNOZONE = "technoZone51";  //added march 11th 2015
+Blockly.Msg.CAT_TECHNOZONE_IN = "capteurs";
+Blockly.Msg.CAT_TECHNOZONE_OUT = "actionneurs";
+Blockly.Msg.CAT_TECHNOZONE_MOTORS = "moteurs";
+Blockly.Msg.CAT_TECHNOZONE_SERVO = "servo-moteurs";
+Blockly.Msg.CAT_TECHNOZONE_LCD = "écran LCD";
+Blockly.Msg.CAT_TECHNOZONE_TELEC = "télécommande";
+
 Blockly.Msg.ARDUINO_BASE_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
 Blockly.Msg.ARDUINO_BASE_DELAY_DELAY_TIME = "faire une pause (en ms) de";
 Blockly.Msg.ARDUINO_BASE_DELAY_TOOLTIP = "spécifier le temps de pause, en millisecondes";
