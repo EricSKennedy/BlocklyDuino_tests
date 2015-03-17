@@ -79,7 +79,8 @@ Code.TOOLBOX_NAME = {
 		'standard':'standard',
 		'arduino':'Arduino',
 		'grove':'Grove',		
-		'technozone51':'TechnoZone51'
+		'technozone51':'TechnoZone51',
+		'zumobot':'ZumoBot'
 };
 /**
  * List of RTL languages.
