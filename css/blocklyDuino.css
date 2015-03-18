@@ -17,6 +17,13 @@ body {
 	-ms-transform:rotate(180deg);    
 }
 
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform:rotate(90deg);    
+}
+
 #divTitre {
 	height: 76px;
 	vertical-align: middle;
@@ -79,6 +86,7 @@ html[dir="RTL"] #divTabpanel {
 #content_area,#content_blocks,#content_term,#content_xml {
 	height: 100%;
 	width: 100%;
+    padding-right: 25px;
 }
 
 #btn_config, #button_saveXML, #button_fakeload {
@@ -89,6 +97,23 @@ html[dir="RTL"] #divTabpanel {
     position: absolute;
     right: 15px;
     top: 0px;
+}
+
+#btn_preview {
+    position: absolute;
+    width:20px;
+    height:200px;
+    right: 0px;
+    top: 50px;
+}
+
+ #toggle {
+width: 25%;
+height: 50%;
+background: #ccc;
+position: absolute;
+right: 50px;
+top:50px;
 }
 
 #btn_delete {
