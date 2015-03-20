@@ -83,75 +83,16 @@ Code.LANGUAGE_NAME = {
 Code.LANGUAGE_RTL = ['ar', 'fa', 'he'];
 
 /**
- * List of tab names.
- * @private
- */
-Code.TABS_ = ['blocks', 'arduino', 'term', 'xml'];
-
-Code.selected = 'blocks';
-
-/**
- * Extracts a parameter from the URL.
- * If the parameter is absent default_value is returned.
- * @param {string} name The name of the parameter.
- * @param {string} defaultValue Value to return if paramater not found.
- * @return {string} The parameter value or the default value if not found.
- */
-Code.getStringParamFromUrl = function(name, defaultValue) {
-  var val = location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
-  return val ? decodeURIComponent(val[1].replace(/\+/g, '%20')) : defaultValue;
-};
-
-/**
  * Get the language of this user from the URL.
  * @return {string} User's language.
  */
 Code.getLang = function() {
-  var lang = Code.getStringParamFromUrl('lang', '');
+  var lang = BlocklyDuino.getStringParamFromUrl('lang', '');
   if (Code.LANGUAGE_NAME[lang] === undefined) {
     // Default to English.
     lang = 'en';
   }
   return lang;
-};
-
-/*
- * Build the xml using toolboxes checked in config modal and stored in session 
- */
-Code.buildToolbox = function() {
-	var loadIds = window.sessionStorage.toolboxids;
-
-	// set the default toolbox if none in session
-	if (loadIds === undefined || loadIds === "") {
-		loadIds = "CAT_LOGIC,CAT_LOOPS";
-		window.sessionStorage.toolboxids = loadIds;
-	}
-	
-	var xmlValue = '<xml>';
-	var xmlids = loadIds.split(",");
-	var element;
-	for (var i = 0; i < xmlids.length; i++) {
-		element = document.getElementById(xmlids[i]);
-		if (element != null) {
-			xmlValue += element.innerHTML;
-		}
-	}
-	xmlValue += '</xml>';
-
-	return xmlValue;
-};
-
-/**
- * Get the size selected from the URL.
- * 
- * @return {int} selectd size.
- */
-Code.getSize = function() {
-  var size = Code.getStringParamFromUrl('size', '');
-  if (size != 'max') {
-	  size = '';
-  }
-  return size;
 };
 
 /**
@@ -163,42 +104,11 @@ Code.isRtl = function() {
 };
 
 /**
- * Load blocks saved on App Engine Storage or in session/local storage.
- * @param {string} defaultXml Text representation of default blocks.
- */
-Code.loadBlocks = function(defaultXml) {
-  try {
-    var loadOnce = window.sessionStorage.loadOnceBlocks;
-  } catch(e) {
-    // Firefox sometimes throws a SecurityError when accessing sessionStorage.
-    // Restarting Firefox fixes this, so it looks like a bug.
-    var loadOnce = null;
-  }
-  if (loadOnce) {
-    // Language switching stores the blocks during the reload.
-	delete window.sessionStorage.loadOnceBlocks;
-    var xml = Blockly.Xml.textToDom(loadOnce);
-    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
-  } else if (defaultXml) {
-    // Load the editor with default starting blocks.
-    var xml = Blockly.Xml.textToDom(defaultXml);
-    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
-  } 
-};
-
-/**
  * Save the blocks and reload with a different language.
  */
 Code.changeLanguage = function() {
   // Store the blocks for the duration of the reload.
-  // This should be skipped for the index page, which has no blocks and does
-  // not load Blockly.
-  // MSIE 11 does not support sessionStorage on file:// URLs.
-  if (typeof Blockly != 'undefined' && window.sessionStorage) {
-    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-    var text = Blockly.Xml.domToText(xml);
-    window.sessionStorage.loadOnceBlocks = text;
-  }
+	BlocklyDuino.backupBlocks();
 
   var languageMenu = document.getElementById('languageMenu');
   var newLang = encodeURIComponent(
@@ -217,143 +127,10 @@ Code.changeLanguage = function() {
 };
 
 /**
- * Maximize/Minimize content blocks div 
- */
-Code.changeSize = function() {
-  // Store the blocks for the duration of the reload.
-  // This should be skipped for the index page, which has no blocks and does
-  // not load Blockly.
-  // MSIE 11 does not support sessionStorage on file:// URLs.
-  if (typeof Blockly != 'undefined' && window.sessionStorage) {
-    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-    var text = Blockly.Xml.domToText(xml);
-    window.sessionStorage.loadOnceBlocks = text;
-  }
-
-  var search = window.location.search;
-  if (search.length <= 1) {
-    search = '?size=max';
-  } else if (search.match(/[?&]size=[^&]*/)) {
-    search = search.replace(/([?&]size=)[^&]*/, '');
-    search = search.replace(/\&/, '?');
-  } else {
-    search = search.replace(/\?/, '?size=max&');
-  }
-
-  window.location = window.location.protocol + '//' +
-      window.location.host + window.location.pathname + search;
-};
-
-/**
  * User's language (e.g. "en").
  * @type string
  */
 Code.LANG = Code.getLang();
-
-/**
- * Switch the visible pane when a tab is clicked.
- * @param {string} clickedName Name of tab clicked.
- */
-Code.tabClick = function(clickedName) {
-  Code.selected = clickedName;
-
-  Code.renderContent();
-};
-
-/**
- * Populate the currently selected pane with content generated from the blocks.
- */
-Code.renderContent = function() {
-  var content = document.getElementById('content_' + Code.selected);
-  
-  if (content.id == 'content_blocks') {
-	    // If the workspace was changed by the XML tab, Firefox will have performed
-	    // an incomplete rendering due to Blockly being invisible.  Rerender.
-	    Blockly.mainWorkspace.render();
-	  } else if (content.id == 'content_xml') {
-		var xml_content = document.getElementById('pre_xml');
-	    var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-	    xml_content.textContent = Blockly.Xml.domToPrettyText(xmlDom);
-	    if (typeof prettyPrintOne == 'function') {
-	      var code_html = prettyPrintOne(xml_content.innerHTML, 'xml');
-	      xml_content.innerHTML = code_html;
-	    }
-	  } else if (content.id == 'content_arduino') {
-	    var arduino_content = document.getElementById('pre_arduino');
-	    arduino_content.textContent = Blockly.Arduino.workspaceToCode();
-	    if (typeof prettyPrintOne == 'function') {
-	      var code_html = prettyPrintOne(arduino_content.innerHTML, 'cpp');
-	      arduino_content.innerHTML = code_html;
-	    }
-	  }
-};
-
-/**
- * Initialize Blockly.  Called on page load.
- */
-Code.init = function() {
-	Code.initLanguage();
-
-	if (Code.getSize() == 'max') {
-		// place div on top
-		var divBody = document.getElementById("divBody");
-		divBody.style.top = "0px";
-
-		// maximize div
-		var divTabpanel = document.getElementById("divTabpanel");
-		divTabpanel.style.width = "100%";
-		divTabpanel.style.height = "100%";
-		divTabpanel.style.position = "absolute";
-		divTabpanel.style.paddingTop = "0px";
-
-		// hide Title
-		var divTitle = document.getElementById("divTitre");
-		divTitle.style.display = "none";
-
-		// hide footer
-		var divFooter = document.getElementById("divFooter");
-		divFooter.style.display = "none";
-
-		// change maximize to minimize
-		var icon_btn_size = document.getElementById("icon_btn_size");
-		icon_btn_size.className += " rotate180";
-	}
-
-	// build Blockly ...
-	Blockly.inject(document.getElementById('content_blocks'), {
-		media : 'media/',
-		rtl : Code.isRtl(),
-		toolbox : Code.buildToolbox()
-	});
-
-	// set the tab
-	Code.tabClick(Code.selected);
-
-	// load blocks stored in session
-	Code.loadBlocks('');
-
-	// bind events to html elements
-	bindFunctions();
-
-	// load the compilerflasher module
-	$(document).ready(
-			function() {
-				compilerflasher = new compilerflasher(getFiles);
-				compilerflasher.on("pre_verify", function() {
-					$("#debug_arduino").html(MSG['pre_verify']);
-				});
-				compilerflasher.on("verification_succeed",
-						function(binary_size) {
-							$("#debug_arduino").html(
-									MSG['verification_succeed'] + binary_size);
-						});
-				compilerflasher.on("verification_failed",
-						function(error_output) {
-							$("#debug_arduino").html(
-									MSG['verification_failed'] + error_output);
-						});
-			});
-};
 
 /**
  * Initialize the page language.
@@ -395,9 +172,14 @@ Code.initLanguage = function() {
 
   // Inject language strings.
   document.getElementById('title').textContent = MSG['title'];
-
+  document.getElementById('span_about').textContent = MSG['span_about'];
+  document.getElementById('aboutModalLabel').textContent = MSG['aboutModalLabel'];
+  document.getElementById('aboutBody').textContent = MSG['aboutBody'];
+  
   document.getElementById('span_config').textContent = MSG['span_config'];
   document.getElementById('labelArduinoCard').textContent = MSG['labelArduinoCard'];
+
+  document.getElementById('btn_preview').title = MSG['btn_preview'];
 
   document.getElementById('span_delete').textContent = MSG['span_delete'];
   document.getElementById('span_saveXML').textContent = MSG['span_saveXML'];
@@ -424,5 +206,3 @@ Code.initLanguage = function() {
 document.write('<script src="lang/msg/' + Code.LANG + '.js"></script>\n');
 // Load Blockly's language strings.
 document.write('<script src="lang/blocks/' + Code.LANG + '.js"></script>\n');
-
-window.addEventListener('load', Code.init);

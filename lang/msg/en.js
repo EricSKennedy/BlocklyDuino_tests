@@ -17,6 +17,9 @@ var MSG = {
   span_select_all:"all",
   btn_close:"close",
   btn_valid:"validate",
+  btn_size_min:"minimize the window",
+  btn_size_max:"maximize the window",
+  btn_preview:"preview Arduino code",
   httpRequestError: "There was a problem with the request.",
   linkAlert: "Share your blocks with this link:\n\n%1",
   hashError: "Sorry, '%1' doesn't correspond with any saved program.",
@@ -29,5 +32,8 @@ var MSG = {
   pre_verify:"Verification .... ",
   verification_succeed: "Verification completed successfully. Size : ",
   verification_failed:"Verification failed. Erreur : ",
-  arduino_card:"delete all and select a card"
+  arduino_card:"delete all and select a card",
+  span_about:"about",
+  aboutModalLabel:"about ...",
+  aboutBody:"- translations and adaptations Sébastien Canet, integration CodeBender by Julien Rat, boosted by the incredible work of Olivier Metayer !"
 };

@@ -17,6 +17,9 @@ var MSG = {
   span_select_all:"toutes",
   btn_close:"fermer",
   btn_valid:"valider",
+  btn_size_min:"réduire la fenêtre",
+  btn_size_max:"agrandir la fenêtre",
+  btn_preview:"aperçu du code Arduino",
   httpRequestError: "Il y a eu un problème avec la demande.",
   linkAlert: "Partagez vos blocs grâce à ce lien:\n\n%1",
   hashError: "Désolé, '%1' ne correspond à aucun programme sauvegardé.",
@@ -29,5 +32,8 @@ var MSG = {
   pre_verify:"vérification en cours... ",
   verification_succeed: "vérification terminée avec succès, taille en mémoire : ",
   verification_failed:"la vérification a échoué, l'erreur est : ",
-  arduino_card:"supprimer tout et sélectionner une carte"
+  arduino_card:"supprimer tout et sélectionner une carte",
+  span_about:"à propos",
+  aboutModalLabel:"à propos ...",
+  aboutBody:"- traductions et adaptations Sébastien Canet, intégration CodeBender par Julien Rat, surboostés par l'incroyable travail d'Olivier Métayer !"
 };

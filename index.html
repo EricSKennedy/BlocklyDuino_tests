@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body onload="BlocklyDuino.init()">
     <div id="divTitre">
         <p>
             <a href="http://www.technologiescollege.fr/blocklyduino/"> <img
@@ -64,7 +64,7 @@
             <li role="presentation" id="tab_blocks" class="active">
                  <a href="#content_blocks" aria-controls="content_blocks" role="tab"    data-toggle="tab">
                      <span class="glyphicon glyphicon-home"></span>
-                     <span id="a_blocks"> blocs</span>
+                     <span id="a_blocks"> </span>
                  </a>
             </li>
             <li role="presentation" id="tab_arduino">
@@ -97,6 +97,9 @@
             <span   id="span_fakeload"> </span>
         </button>
         <input type="file" id="load" style="display: none;" />
+        <button id="btn_about" type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#aboutModal">
+            <span id="span_about"> </span>
+        </button>
     </div>
     </div>
     <div id="divTabpanel" role="tabpanel">
@@ -108,9 +111,15 @@
                         <span class="glyphicon glyphicon-erase"> </span>
                         <span id="span_delete"> </span>
                     </button>
-					<button id="btn_size" class="btn btn-default">
+					<button id="btn_size" class="btn btn-default" title="">
 						<span id="icon_btn_size" class="glyphicon glyphicon-new-window"> </span>
 					</button>
+                    <button id="btn_preview" class="btn btn-default">
+                        <span id="icon_btn_preview" class="glyphicon glyphicon-eye-open"> </span>
+                    </button>
+                    <div id="toggle" class="modal-content" style="display: none;">
+                        <pre id="pre_previewArduino"></pre>
+                    </div>
 				</div>
 				<div id="content_arduino" class="tab-pane">
                 <select id="cb_cf_boards"></select>
@@ -123,7 +132,7 @@
             </div>
             <div id="content_term" class="tab-pane">
                 <select id="cb_cf_baud_rates"></select>
-                <button id="cb_cf_serial_monitor_connect" class="btn btn-primary">connecter la console s&eacute;rie</button>
+                <button id="cb_cf_serial_monitor_connect" class="btn btn-primary"></button>
                 <div id="cb_cf_serial_monitor"></div>
             </div>
             <div id="content_xml" class="tab-pane">
@@ -133,11 +142,24 @@
     </div>
     </div>
 
-    <div id="divFooter" role="tabpanel">
+<!-- Modals -->
+<!-- about modal -->
+<div class="modal fade bs-example-modal-sm" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="aboutModalLabel"></h4>
+      </div>
+      <div class="modal-body">
         <a href="https://github.com/technologiescollege/BlocklyDuino">
-              <i>BlocklyDuino sur Github</i></a> <i> - traductions et adaptations Sébastien Canet, intégration CodeBender par Julien Rat, surboostés par l'incroyable travail d'Olivier M&eacute;tayer !</i>
+              <i>Github BlocklyDuino</i></a> 
+              <span id="aboutBody" style="font-style: italic;"> </span>
+      </div>
     </div>
-
+  </div>
+</div>
+<!-- toolbox config modal -->
 <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
