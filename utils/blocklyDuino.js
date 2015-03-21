@@ -49,11 +49,15 @@ BlocklyDuino.renderContent = function() {
 	    }
 	  } else if (content.id == 'content_arduino') {
 	    var arduino_content = document.getElementById('pre_arduino');
-	    arduino_content.textContent = Blockly.Arduino.workspaceToCode();
-	    if (typeof prettyPrintOne == 'function') {
-	      var code_html = prettyPrintOne(arduino_content.innerHTML, 'cpp');
-	      arduino_content.innerHTML = code_html;
-	    }
+	    try {
+		    arduino_content.textContent = Blockly.Arduino.workspaceToCode();
+		    if (typeof prettyPrintOne == 'function') {
+		      var code_html = prettyPrintOne(arduino_content.innerHTML, 'cpp');
+		      arduino_content.innerHTML = code_html;
+		    }
+	    } catch (e) {
+	            alert(e);
+		}
 	  }
 };
 
