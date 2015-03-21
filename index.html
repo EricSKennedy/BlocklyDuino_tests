@@ -2,15 +2,25 @@
 <head>
 <link rel="icon" type="image/png" href="favicon.bmp" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Blockly Arduino</title>
+<title>Blockly@rduino</title>
 <script type="text/javascript" src="blocks/blockly_compressed.js"></script>
-<script type="text/javascript" src="blocks/blocks_compressed.js"></script>
+<!--<script type="text/javascript" src="blocks/blocks_compressed.js"></script>
+contient la liste des blocs de Blockly ci-dessous en compressé-->
+<script type="text/javascript" src="blocks/blockly/colour.js"></script>
+<script type="text/javascript" src="blocks/blockly/lists.js"></script>
+<script type="text/javascript" src="blocks/blockly/logic.js"></script>
+<script type="text/javascript" src="blocks/blockly/loops.js"></script>
+<script type="text/javascript" src="blocks/blockly/math.js"></script>
+<script type="text/javascript" src="blocks/blockly/procedures.js"></script>
+<script type="text/javascript" src="blocks/blockly/text.js"></script>
+<script type="text/javascript" src="blocks/blockly/variables.js"></script>
+
 <script type="text/javascript" src="blocks/arduino_base/arduino_base.js"></script>
 <script type="text/javascript" src="blocks/grove/grove.js"></script>
 <script type="text/javascript" src="blocks/technozone51/technozone.js"></script>
 
-<script type="text/javascript" src="generators/arduino/arduino.js"></script>
-<script type="text/javascript" src="generators/arduino/base.js"></script>
+<script type="text/javascript" src="generators/arduino/blocklyduino.js"></script>
+<script type="text/javascript" src="generators/arduino/arduino_base.js"></script>
 <script type="text/javascript" src="generators/arduino/control.js"></script>
 <script type="text/javascript" src="generators/arduino/grove.js"></script>
 <script type="text/javascript" src="generators/arduino/logic.js"></script>
@@ -37,11 +47,11 @@
 <body onload="BlocklyDuino.init()">
     <div id="divTitre">
         <p>
-            <a href="http://www.technologiescollege.fr/blocklyduino/"> <img
+            <a href="http://www.technologiescollege.fr/blockly@rduino/"> <img
                 src="media/Arduino-uno-perspective-transparent.png" border="0"
                 height="76px">
             </a> 
-            <b>BlocklyDuino</b> : 
+            <b>Blockly@rduino</b> : 
             <span id="title"></span>
         </p>
         <select id="languageMenu"></select>
@@ -152,8 +162,8 @@
         <h4 class="modal-title" id="aboutModalLabel"></h4>
       </div>
       <div class="modal-body">
-        <a href="https://github.com/technologiescollege/BlocklyDuino">
-              <i>Github BlocklyDuino</i></a> 
+        <a href="https://github.com/technologiescollege/Blockly-rduino">
+              <i>Github Blockly@rduino</i></a> 
               <span id="aboutBody" style="font-style: italic;"> </span>
       </div>
     </div>
@@ -187,12 +197,12 @@
         <block type="logic_operation"></block>
         <block type="logic_negate"></block>
         <block type="logic_boolean"></block>
-        <block type="logic_null"></block>
-        <block type="logic_ternary"></block>        
+        <block type="logic_null"></block>  
     </category>
 </xml>
 <xml id="CAT_LOOPS" style="display: none">
     <category name="CAT_LOOPS">
+		<block type="controls_repeat"></block>
         <block type="controls_repeat_ext">
             <value name="TIMES">
                 <block type="math_number">
@@ -229,7 +239,6 @@
         <block type="math_arithmetic"></block>
         <block type="math_single"></block>
         <block type="math_trig"></block>
-        <block type="math_constant"></block>
         <block type="math_number_property"></block>
         <block type="math_change">
             <value name="DELTA">
@@ -268,7 +277,7 @@
         <block type="math_random_float"></block>
     </category>
 </xml>
-<xml id="CAT_LIST" style="display: none">
+<!--<xml id="CAT_LIST" style="display: none">
     <category name="CAT_LIST">
         <block type="lists_create_empty"></block>
         <block type="lists_create_with"></block>
@@ -285,7 +294,7 @@
         <block type="lists_getIndex"></block>
         <block type="lists_setIndex"></block>
     </category>
-</xml>
+</xml>-->
 <xml id="CAT_TEXT" style="display: none">
     <category name="CAT_TEXT">
         <block type="text"></block>
@@ -328,7 +337,7 @@
         </block>
     </category>
 </xml>
-<xml id="CAT_COLOR" style="display: none">
+<!--<xml id="CAT_COLOR" style="display: none">
     <category name="CAT_COLOR">
         <block type="colour_picker"></block>
         <block type="colour_random"></block>
@@ -367,7 +376,7 @@
             </value>
         </block>
     </category> 
-</xml>
+</xml>-->
 <xml id="CAT_VARIABLES" style="display: none">
     <category name="CAT_VARIABLES" custom="VARIABLE"></category>
 </xml>

@@ -17,10 +17,10 @@ Blockly.Blocks.technozone_pap1cc = {
     this.appendDummyInput("")
         .appendTitle("à l'adresse")
         .appendTitle(new Blockly.FieldDropdown([["16", "16"], ["17", "17"], ["18", "18"], ["19", "19"], ["20", "20"], ["21", "21"], ["22", "22"], ["23", "23"]]), "I2CADD");
-    this.appendValueInput("SENS", Boolean)
+    this.appendValueInput("SENS", 'Boolean')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("sens horaire ( VRAI ou FAUX ? )");
-    this.appendValueInput("VITESSE", Number)
+    this.appendValueInput("VITESSE",'Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("vitesse [0~255]");          
     this.setPreviousStatement(true, null);
@@ -43,13 +43,13 @@ Blockly.Blocks.technozone_pap1relatif = {
     this.appendDummyInput("")
         .appendTitle("à l'adresse")
         .appendTitle(new Blockly.FieldDropdown([["16", "16"], ["17", "17"], ["18", "18"], ["19", "19"], ["20", "20"], ["21", "21"], ["22", "22"], ["23", "23"]]), "I2CADD");
-    this.appendValueInput("SENS", Boolean)
+    this.appendValueInput("SENS", 'Boolean')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("sens horaire ( VRAI ou FAUX ? )");
-    this.appendValueInput("VITESSE", Number)
+    this.appendValueInput("VITESSE",'Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("vitesse [0~255]");
-    this.appendValueInput("PAS", Number)
+    this.appendValueInput("PAS",'Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("nombre de pas");               
     this.setPreviousStatement(true, null);
@@ -93,7 +93,7 @@ Blockly.Blocks.technozone_pap1busy = {
     this.appendDummyInput("")
         .appendTitle("à l'adresse sur le bus I2C")
         .appendTitle(new Blockly.FieldDropdown([["16", "16"], ["17", "17"], ["18", "18"], ["19", "19"], ["20", "20"], ["21", "21"], ["22", "22"], ["23", "23"]]), "I2CADD");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Teste si les moteurs pas à pas sont en mouvement ( réf : PAP1 )');
   }
 };
@@ -115,10 +115,10 @@ Blockly.Blocks.technozone_mot2 = {
     this.appendDummyInput("")
         .appendTitle("broche de commande de la Vitesse (PWM~)")
         .appendTitle(new Blockly.FieldDropdown(profile.default.PWM), "PINPWM");  
-    this.appendValueInput("SENS", Boolean)
+    this.appendValueInput("SENS", 'Boolean')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("sens horaire (VRAI ou FAUX ?)");
-    this.appendValueInput("VITESSE", Number)
+    this.appendValueInput("VITESSE",'Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("vitesse [0~255]");          
     this.setPreviousStatement(true, null);
@@ -144,7 +144,7 @@ Blockly.Blocks.technozone_telec2 = {
         //.appendTitle(" sur la broche ")
         //.appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN")
         .appendTitle("a été appuyée ?");        
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Teste si une touche de la télécommande a été appuyée (réf : IRF1 + TELEC2)');
   }
 };
@@ -166,7 +166,7 @@ Blockly.Blocks.technozone_telec1 = {
         //.appendTitle(" sur la broche ")
         //.appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN")
         .appendTitle("a été appuyée ?");        
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Teste si une touche de la télécommande a été appuyée (réf : IRF1 + TELEC1)');
   }
 };
@@ -195,7 +195,7 @@ Blockly.Blocks.technozone_telecinit = {
     this.appendDummyInput("")
         .appendTitle("une touche de la télécommande a été appuyée ?")
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/irf1.jpg", 64, 64));
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Teste si une touche de la télécommande a été appuyée (réf : IRF1)');
   }
 };
@@ -226,10 +226,10 @@ Blockly.Blocks.technozone_mot1easybot1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/easybot.jpg", 64, 64))
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/plus.jpg", 20, 64))
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/kitmot1.jpg", 64, 64));
-    this.appendValueInput("SENS", Boolean)
+    this.appendValueInput("SENS", 'Boolean')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("sens horaire (VRAI ou FAUX ?)");
-    this.appendValueInput("VITESSE", Number)
+    this.appendValueInput("VITESSE",'Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("vitesse [0~255]");          
     this.setPreviousStatement(true, null);
@@ -250,10 +250,10 @@ Blockly.Blocks.technozone_mot1easycon1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/easycon1.jpg", 64, 64))
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/plus.jpg", 20, 64))
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/kitmot1.jpg", 64, 64));
-    this.appendValueInput("SENS", Boolean)
+    this.appendValueInput("SENS", 'Boolean')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("sens horaire (VRAI ou FAUX ?)");
-    this.appendValueInput("VITESSE", Number)
+    this.appendValueInput("VITESSE",'Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("vitesse [0~255]");          
     this.setPreviousStatement(true, null);
@@ -425,10 +425,10 @@ Blockly.Blocks.technozone_buzzer1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/buzzer1.jpg", 64, 64))
 		.appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN")
-    this.appendValueInput("NUM", Number)
+    this.appendValueInput("NUM",'Number')
         .appendTitle("d'une fréquence (Hz)")
         .setCheck(Number);
-    this.appendValueInput("TPS", Number)
+    this.appendValueInput("TPS",'Number')
         .appendTitle("pendant une durée (ms) de")
         .setCheck(Number);
     this.setInputsInline(true);
@@ -452,7 +452,7 @@ Blockly.Blocks.technozone_sonar1 = {
     this.appendDummyInput("")
         .appendTitle("DIST est sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "DIST");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée Sonar Ultrasonore (réf : SONAR1)');
   }
 };
@@ -469,7 +469,7 @@ Blockly.Blocks.technozone_servo1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/servomoteur1.jpg", 64, 64))
         .appendTitle("de la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN")
-    this.appendValueInput("DEGREE", Number)
+    this.appendValueInput("DEGREE",'Number')
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle("sur l'angle [0~180°]");
@@ -489,7 +489,7 @@ Blockly.Blocks.technozone_btn1white = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/btn1white.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée bouton blanc (réf : BTN1-WHITE)');
   }
 };
@@ -504,7 +504,7 @@ Blockly.Blocks.technozone_btn1black = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/btn1black.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée bouton noir (réf : BTN1-BLACK)');
   }
 };
@@ -519,7 +519,7 @@ Blockly.Blocks.technozone_btn1green = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/btn1green.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée bouton vert (réf : BTN1-GREEN)');
   }
 };
@@ -534,7 +534,7 @@ Blockly.Blocks.technozone_btn1red = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/btn1red.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée bouton rouge (réf : BTN1-RED)');
   }
 };
@@ -549,7 +549,7 @@ Blockly.Blocks.technozone_switch1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/switch1.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée Fin de course (réf : SWITCH1 ou SWITCH2)');
   }
 };
@@ -565,7 +565,7 @@ Blockly.Blocks.technozone_ils1 = {
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN")
         .appendTitle("d'un champ magnétique");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée Capteur Magnétique (réf : ILS1)');
   }
 };
@@ -580,7 +580,7 @@ Blockly.Blocks.technozone_proxi1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/proxi1.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée Détecteur de Proximité (réf : PROXI1)');
   }
 };
@@ -595,7 +595,7 @@ Blockly.Blocks.technozone_bari1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/bari1.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée Barrière Infrarouge (réf : BARI1)');
   }
 };
@@ -611,7 +611,7 @@ Blockly.Blocks.technozone_lig1 = {
         .appendTitle("sur la broche ")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN")
         .appendTitle("de suivi de ligne");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée Détecteur de ligne (réf : LIG1)');
   }
 };
@@ -628,7 +628,7 @@ Blockly.Blocks.technozone_cmouv1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/cmouv1.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.digital), "PIN");
-    this.setOutput(true, Boolean);
+    this.setOutput(true, 'Boolean');
     this.setTooltip('Entrée Détecteur de Présence (réf : SERVO1 + CMOUV1)');
   }
 };
@@ -643,7 +643,7 @@ Blockly.Blocks.technozone_potar1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/potar1.jpg", 64, 64))
         .appendTitle("sur la broche ")
         .appendTitle(new Blockly.FieldDropdown(profile.default.analog), "PIN");
-    this.setOutput(true, Number);
+    this.setOutput(true, 'Number');
     this.setTooltip('Entrée potentiomètre (réf : POTAR1)');
   }
 };
@@ -658,7 +658,7 @@ Blockly.Blocks.technozone_ctn1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/ctn1.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.analog), "PIN")
-    this.setOutput(true, Number);
+    this.setOutput(true, 'Number');
     this.setTooltip('Entrée Capteur de Température (réf : CTN1)');
   }
 };
@@ -673,7 +673,7 @@ Blockly.Blocks.technozone_ldr1 = {
         .appendTitle(new Blockly.FieldImage("http://www.technozone51.fr/plugins/ldr1.jpg", 64, 64))
         .appendTitle("sur la broche")
         .appendTitle(new Blockly.FieldDropdown(profile.default.analog), "PIN")
-    this.setOutput(true, Number);
+    this.setOutput(true, 'Number');
     this.setTooltip('Entrée Capteur de Luminosité (réf : LDR1)');
   }
 };

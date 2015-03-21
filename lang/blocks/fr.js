@@ -1,5 +1,3 @@
-// This file was automatically generated.  Do not modify.
-
 'use strict';
 
 goog.provide('Blockly.Msg.fr');
@@ -41,9 +39,9 @@ Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST_TAIL = "";  // untranslated
 Blockly.Msg.CONTROLS_FOREACH_INPUT_ITEM = "pour chaque élément";
 Blockly.Msg.CONTROLS_FOREACH_TOOLTIP = "Pour chaque élément dans une liste, donner la valeur de l’élément à la variable '%1', puis exécuter certains ordres.";
 Blockly.Msg.CONTROLS_FOR_HELPURL = "https://github.com/google/blockly/wiki/Loops#count-with";  // untranslated
-Blockly.Msg.CONTROLS_FOR_INPUT_FROM_TO = "from %1 to %2";  // untranslated
-Blockly.Msg.CONTROLS_FOR_INPUT_FROM_TO_BY = "de %1 à %2 par %3";
-Blockly.Msg.CONTROLS_FOR_INPUT_WITH = "compter avec";
+Blockly.Msg.CONTROLS_FOR_INPUT_FROM_TO = "allant de %1 à %2";
+Blockly.Msg.CONTROLS_FOR_INPUT_FROM_TO_BY = "allant de %1 à %2 par pas de %3";
+Blockly.Msg.CONTROLS_FOR_INPUT_WITH = "pour";
 Blockly.Msg.CONTROLS_FOR_TOOLTIP = "Faire en sorte que la variable %1 prenne les valeurs depuis le numéro de début jusqu’au numéro de fin, en s’incrémentant de l’intervalle spécifié, et exécuter les ordres spécifiés.";
 Blockly.Msg.CONTROLS_IF_ELSEIF_TOOLTIP = "Ajouter une condition au bloc si.";
 Blockly.Msg.CONTROLS_IF_ELSE_TOOLTIP = "Ajouter une condition finale fourre-tout au bloc si.";
@@ -265,7 +263,7 @@ Blockly.Msg.MATH_TRIG_TOOLTIP_COS = "Renvoie le cosinus d’un angle en degrés 
 Blockly.Msg.MATH_TRIG_TOOLTIP_SIN = "Renvoie le sinus d’un angle en degrés (pas en radians).";
 Blockly.Msg.MATH_TRIG_TOOLTIP_TAN = "Renvoie la tangente d’un angle en degrés (pas en radians).";
 Blockly.Msg.ME = "Moi";
-Blockly.Msg.NEW_VARIABLE = "Nouvelle variable…";
+Blockly.Msg.NEW_VARIABLE = "nouvelle variable…";
 Blockly.Msg.NEW_VARIABLE_TITLE = "Nom de la nouvelle variable :";
 Blockly.Msg.ORDINAL_NUMBER_SUFFIX = "";  // untranslated
 Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS = "autoriser les déclarations";
@@ -293,9 +291,9 @@ Blockly.Msg.PROCEDURES_MUTATORARG_TITLE = "nom de l’entrée :";
 Blockly.Msg.PROCEDURES_MUTATORARG_TOOLTIP = "Ajouter une entrée à la fonction.";
 Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TITLE = "entrées";
 Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TOOLTIP = "Ajouter, supprimer, ou réarranger les entrées de cette fonction.";
-Blockly.Msg.REMOVE_COMMENT = "Supprimer un commentaire";
-Blockly.Msg.RENAME_VARIABLE = "Renommer la variable…";
-Blockly.Msg.RENAME_VARIABLE_TITLE = "Renommer toutes les variables '%1' en :";
+Blockly.Msg.REMOVE_COMMENT = "supprimer un commentaire";
+Blockly.Msg.RENAME_VARIABLE = "renommer la variable…";
+Blockly.Msg.RENAME_VARIABLE_TITLE = "renommer toutes les variables '%1' en :";
 Blockly.Msg.TEXT_APPEND_APPENDTEXT = "ajouter le texte";
 Blockly.Msg.TEXT_APPEND_HELPURL = "https://github.com/google/blockly/wiki/Text#text-modification";  // untranslated
 Blockly.Msg.TEXT_APPEND_TO = "à";
@@ -358,13 +356,13 @@ Blockly.Msg.TEXT_TRIM_OPERATOR_LEFT = "supprimer les espaces du côté gauche";
 Blockly.Msg.TEXT_TRIM_OPERATOR_RIGHT = "supprimer les espaces du côté droit";
 Blockly.Msg.TEXT_TRIM_TOOLTIP = "Renvoyer une copie du texte avec les espaces supprimés d’un bout ou des deux.";
 Blockly.Msg.TODAY = "Aujourd'hui";
-Blockly.Msg.VARIABLES_DEFAULT_NAME = "élément";
-Blockly.Msg.VARIABLES_GET_CREATE_SET = "Créer 'fixer %1'";
+Blockly.Msg.VARIABLES_DEFAULT_NAME = "variable";
+Blockly.Msg.VARIABLES_GET_CREATE_SET = "créer 'fixer %1'";
 Blockly.Msg.VARIABLES_GET_HELPURL = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 Blockly.Msg.VARIABLES_GET_TAIL = "";  // untranslated
 Blockly.Msg.VARIABLES_GET_TITLE = "";  // untranslated
 Blockly.Msg.VARIABLES_GET_TOOLTIP = "Renvoie la valeur de cette variable.";
-Blockly.Msg.VARIABLES_SET_CREATE_GET = "Créer 'obtenir %1'";
+Blockly.Msg.VARIABLES_SET_CREATE_GET = "créer 'obtenir %1'";
 Blockly.Msg.VARIABLES_SET_HELPURL = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
 Blockly.Msg.VARIABLES_SET_TAIL = "à";
 Blockly.Msg.VARIABLES_SET_TITLE = "fixer";
@@ -413,7 +411,7 @@ Blockly.Msg.CAT_GROVE_OUT = "actionneurs";
 Blockly.Msg.CAT_GROVE_LCD = "écran LCD";
 Blockly.Msg.CAT_GROVE_COMM = "communication";
 
-Blockly.Msg.CAT_TECHNOZONE = "technoZone51";  //added march 11th 2015
+Blockly.Msg.CAT_TECHNOZONE = "TechnoZone51";  //added march 11th 2015
 Blockly.Msg.CAT_TECHNOZONE_IN = "capteurs";
 Blockly.Msg.CAT_TECHNOZONE_OUT = "actionneurs";
 Blockly.Msg.CAT_TECHNOZONE_MOTORS = "moteurs";
@@ -432,7 +430,7 @@ Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_HELPURL = "http://arduino.cc/en/Reference/
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_INPUT = "mettre la DEL sur la carte à l'état logique";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_TOOLTIP = "éteint ou allume la DEL sur la carte Arduino";
 Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_HELPURL = "http://arduino.cc/en/Reference/DigitalWrite";
-Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_INPUT1 = "mettre la broche Digital";
+Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_INPUT1 = "mettre la broche Numérique";
 Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_INPUT2 = "à l'état logique";
 Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_TOOLTIP = "écrire un état numérique 0 ou 1 sur une sortie spécifique";
 Blockly.Msg.ARDUINO_INOUT_DIGITAL_READ_HELPURL = "http://arduino.cc/en/Reference/DigitalRead";
@@ -463,7 +461,7 @@ Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT1 = "orienter le servo-moteur";
 Blockly.Msg.ARDUINO_SERVO_MOVE_IMAGE = "blocks/arduino_base/servomoteur.jpg";
 Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT2 = "sur la broche";
 Blockly.Msg.ARDUINO_SERVO_MOVE_DEGREE = "d'un angle (0~180°) de";
-Blockly.Msg.ARDUINO_SERVO_MOVE_DELAY_TIME = "pendant un délai (ms) de";
+Blockly.Msg.ARDUINO_SERVO_MOVE_DELAY_TIME = "continuer après un délai (ms) de";
 Blockly.Msg.ARDUINO_SERVO_MOVE_TOOLTIP = "rotation possible entre 0~180 degrés";
 Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_HELPURL = "http://www.arduino.cc/playground/ComponentLib/servo";
 Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_INPUT1 = "l'angle du servo-moteur";
@@ -476,6 +474,6 @@ Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP = "envoie des données sur le port sér
 //added march 9th 2015
 Blockly.Msg.GROVE_INOUT_LED_HELPURL = "http://www.seeedstudio.com/wiki/index.php?title=GROVE_-_Starter_Bundle_V1.0b#LED";
 Blockly.Msg.GROVE_INOUT_LED_INPUT1 = "mettre la DEL";
-Blockly.Msg.GROVE_INOUT_LED_INPUT2 = "sur la broche Digital";
+Blockly.Msg.GROVE_INOUT_LED_INPUT2 = "sur la broche Numérique";
 Blockly.Msg.GROVE_INOUT_LED_INPUT3 = "à l'état";
 Blockly.Msg.GROVE_INOUT_LED_TOOLTIP = "active la sortie Digital sur laquelle la DEL est branchée";

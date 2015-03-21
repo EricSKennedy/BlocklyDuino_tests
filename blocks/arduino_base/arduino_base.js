@@ -92,12 +92,12 @@ Blockly.Blocks.inout_digital_read = {
   init: function() {
     this.setColour(230);
     this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_DIGITAL_READ_HELPURL);
-    this.appendDummyInput("")
+    this.appendDummyInput()
 	    .appendField(Blockly.Msg.ARDUINO_INOUT_DIGITAL_READ_INPUT)
 	this.appendValueInput("PIN", 'Number')
         .setCheck('Number');
 	this.setInputsInline(true);
-    this.setOutput(true, Boolean);
+    this.setOutput(true,'Boolean');
     this.setTooltip(Blockly.Msg.ARDUINO_INOUT_DIGITAL_READ_TOOLTIP);
   }
 };
@@ -174,10 +174,10 @@ Blockly.Blocks.inout_analog_read = {
   init: function() {
     this.setColour(230);
 	this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_HELPURL);
-    this.appendDummyInput("")
+    this.appendDummyInput()
         .appendField(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_INPUT)
         .appendField(new Blockly.FieldDropdown(profile.default.analog), "PIN");
-    this.setOutput(true, Number);
+    this.setOutput(true, 'Number');
     this.setTooltip(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_TOOLTIP);
   }
 };
@@ -188,7 +188,7 @@ Blockly.Blocks.inout_onoff = {
 	this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_ONOFF_HELPURL);
     this.appendDummyInput("")
         .appendField(new Blockly.FieldDropdown([["1 -> 5V", "HIGH"], ["0 -> 0V", "LOW"]]), 'BOOL')
-    this.setOutput(true, Boolean);
+    this.setOutput(true,'Boolean');
     this.setTooltip(Blockly.Msg.LOGIC_BOOLEAN_TOOLTIP);
   }
 };
@@ -231,7 +231,7 @@ Blockly.Blocks.servo_read_degrees = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_INPUT2)
         .appendField(new Blockly.FieldDropdown(profile.default.PWM), "PIN");
-    this.setOutput(true, Number);
+    this.setOutput(true, 'Number');
     this.setTooltip(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_TOOLTIP);
   }
 };

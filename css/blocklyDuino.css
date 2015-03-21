@@ -61,6 +61,7 @@ html[dir="RTL"] #menuPanel {
 	clear: both;
 	float: left;
 	width: 15%;
+	max-width: 200px;
 	height: 100%;
 	padding-left: 10px;
 }
