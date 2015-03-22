@@ -60,16 +60,14 @@ html[dir="RTL"] #menuPanel {
 #menuPanel {
 	clear: both;
 	float: left;
-	width: 15%;
-	max-width: 200px;
+	width: 200px;
 	height: 100%;
 	padding-left: 10px;
 }
 
 #divTabpanel {
-	float: left;
 	height: 100%;
-	width: 85%;
+	margin-left:200px;
 	padding-top: 10px;
 }
 

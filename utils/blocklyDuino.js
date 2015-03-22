@@ -452,6 +452,7 @@ BlocklyDuino.init = function() {
 		divTabpanel.style.height = "100%";
 		divTabpanel.style.position = "absolute";
 		divTabpanel.style.paddingTop = "0px";
+		divTabpanel.style.marginLeft = "0px";
 
 		// hide Title
 		var divTitle = document.getElementById("divTitre");
