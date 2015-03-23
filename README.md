@@ -54,10 +54,12 @@ Pour le téléversement et la console série, vous devez disposer d'un accès we
 ## Auteurs et contributeurs
 Programme Blockly : [https://developers.google.com/blockly/](https://developers.google.com/blockly/)
 
-Concept d'origine : Fred Lin (@gasolin [https://github.com/gasolin/BlocklyDuino](https://github.com/gasolin/BlocklyDuino)).
+Concept d'origine BlocklyDuino : Fred Lin (@gasolin [https://github.com/gasolin/BlocklyDuino](https://github.com/gasolin/BlocklyDuino)).
 
 Son projet s'est aussi inspiré de [ardublock](https://github.com/taweili/ardublock) et [modkit](http://www.modk.it/).
 
 Intégration de CodeBender : Julien Rat [https://github.com/julienrat](https://github.com/julienrat)
 
 **Ré-écriture totale et refonte graphique : Olivier Métayer**
+
+_Spanish translation : José Manuel Ruiz_
