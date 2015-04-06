@@ -321,91 +321,99 @@ function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
 function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
 
 Blockly.Arduino.grove_rgb_led = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var NextPIN = _get_next_pin(dropdown_pin);
-
-  Blockly.Arduino.setups_['setup_input_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
-  Blockly.Arduino.setups_['setup_input_'+NextPIN] = 'pinMode('+NextPIN+', OUTPUT);';
-  Blockly.Arduino.definitions_['define_uint8'] = "#define uint8 unsigned char";
-  Blockly.Arduino.definitions_['define_uint16'] = "#define uint16 unsigned int";
-  Blockly.Arduino.definitions_['define_uint32'] = "#define uint32 unsigned long int";
-  Blockly.Arduino.definitions_['define_clkproduce_'+dropdown_pin] = "void ClkProduce_"+dropdown_pin+"(void)\n"+
-  "{\n"+
-  "  digitalWrite("+dropdown_pin+", LOW);\n"+
-  "  delayMicroseconds(20);\n"+
-  "  digitalWrite("+dropdown_pin+", HIGH);\n"+
-  "  delayMicroseconds(20);\n"+
-  "}\n";
-  Blockly.Arduino.definitions_['define_send32zero_'+dropdown_pin] = "void Send32Zero_"+dropdown_pin+"(void)\n"+
-  "{\n"+
-  "  uint8 i;\n"+
-  "  for (i=0; i<32; i++)\n"+
-  "  {\n"+
-  "    digitalWrite("+NextPIN+", LOW);\n"+
-  "    ClkProduce_"+dropdown_pin+"();\n"+
-  "  }\n"+
-  "}\n";
-  Blockly.Arduino.definitions_['define_taskanticode'] = "uint8 TakeAntiCode(uint8 dat)\n"+
-  "{\n"+
-  "  uint8 tmp = 0;\n"+
-  "  if ((dat & 0x80) == 0)\n"+
-  "  {\n"+
-  "    tmp |= 0x02;\n"+
-  "  }\n"+
-  "  \n"+
-  "  if ((dat & 0x40) == 0)\n"+
-  "  {\n"+
-  "    tmp |= 0x01;\n"+
-  "  }\n"+
-  "  return tmp;\n"+
-  "}\n";
-  Blockly.Arduino.definitions_['define_datasend_'+dropdown_pin] = "// gray data\n"+
-  "void DatSend_"+dropdown_pin+"(uint32 dx)\n"+
-  "{\n"+
-  "  uint8 i;\n"+
-  "  for (i=0; i<32; i++)\n"+
-  "  {\n"+
-  "    if ((dx & 0x80000000) != 0)\n"+
-  "    {\n"+
-  "      digitalWrite("+NextPIN+", HIGH);\n"+
-  "    }\n"+
-  "    else\n"+
-  "    {\n"+
-  "      digitalWrite("+NextPIN+", LOW);\n"+
-  "    }\n"+
-  "  dx <<= 1;\n"+
-  "  ClkProduce_"+dropdown_pin+"();\n"+
-  "  }\n"+
-  "}\n";
-  Blockly.Arduino.definitions_['define_datadealwithsend_'+dropdown_pin] = "// data processing\n"+
-"void DataDealWithAndSend_"+dropdown_pin+"(uint8 r, uint8 g, uint8 b)\n"+
-"{\n"+
-  "  uint32 dx = 0;\n"+
-  "  dx |= (uint32)0x03 << 30;             // highest two bits 1，flag bits\n"+
-  "  dx |= (uint32)TakeAntiCode(b) << 28;\n"+
-  "  dx |= (uint32)TakeAntiCode(g) << 26;\n"+
-  "  dx |= (uint32)TakeAntiCode(r) << 24;\n"+
- "\n"+
-  "  dx |= (uint32)b << 16;\n"+
-  "  dx |= (uint32)g << 8;\n"+
-  "  dx |= r;\n"+
- "\n"+
-  "  DatSend_"+dropdown_pin+"(dx);\n"+
-"}\n";
-  var code = "Send32Zero_"+dropdown_pin+"(); // begin\n";
-  //console.log(this.itemCount_);
-  if (this.itemCount_ == 0) {
-    return '';
-  } else {
-    for (var n = 0; n < this.itemCount_; n++) {
-      var colour_rgb = this.getFieldValue('RGB'+n);
-      //console.log(colour_rgb);
-      code += "DataDealWithAndSend_"+dropdown_pin+"("+hexToR(colour_rgb)+", "+hexToG(colour_rgb)+", "+hexToB(colour_rgb)+"); // first node data\n";
-    }
-  }
-  code += "Send32Zero_"+dropdown_pin+"();  // send to update data\n";
+  var dropdown_pin = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_stat = this.getFieldValue('STAT');
+  Blockly.Arduino.setups_['setup_green_led_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
+  var code = 'digitalWrite('+dropdown_pin+','+dropdown_stat+');\n'
   return code;
 };
+
+// Blockly.Arduino.grove_rgb_led = function() {
+  // var dropdown_pin = this.getFieldValue('PIN');
+  // var NextPIN = _get_next_pin(dropdown_pin);
+
+  // Blockly.Arduino.setups_['setup_input_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
+  // Blockly.Arduino.setups_['setup_input_'+NextPIN] = 'pinMode('+NextPIN+', OUTPUT);';
+  // Blockly.Arduino.definitions_['define_uint8'] = "#define uint8 unsigned char";
+  // Blockly.Arduino.definitions_['define_uint16'] = "#define uint16 unsigned int";
+  // Blockly.Arduino.definitions_['define_uint32'] = "#define uint32 unsigned long int";
+  // Blockly.Arduino.definitions_['define_clkproduce_'+dropdown_pin] = "void ClkProduce_"+dropdown_pin+"(void)\n"+
+  // "{\n"+
+  // "  digitalWrite("+dropdown_pin+", LOW);\n"+
+  // "  delayMicroseconds(20);\n"+
+  // "  digitalWrite("+dropdown_pin+", HIGH);\n"+
+  // "  delayMicroseconds(20);\n"+
+  // "}\n";
+  // Blockly.Arduino.definitions_['define_send32zero_'+dropdown_pin] = "void Send32Zero_"+dropdown_pin+"(void)\n"+
+  // "{\n"+
+  // "  uint8 i;\n"+
+  // "  for (i=0; i<32; i++)\n"+
+  // "  {\n"+
+  // "    digitalWrite("+NextPIN+", LOW);\n"+
+  // "    ClkProduce_"+dropdown_pin+"();\n"+
+  // "  }\n"+
+  // "}\n";
+  // Blockly.Arduino.definitions_['define_taskanticode'] = "uint8 TakeAntiCode(uint8 dat)\n"+
+  // "{\n"+
+  // "  uint8 tmp = 0;\n"+
+  // "  if ((dat & 0x80) == 0)\n"+
+  // "  {\n"+
+  // "    tmp |= 0x02;\n"+
+  // "  }\n"+
+  // "  \n"+
+  // "  if ((dat & 0x40) == 0)\n"+
+  // "  {\n"+
+  // "    tmp |= 0x01;\n"+
+  // "  }\n"+
+  // "  return tmp;\n"+
+  // "}\n";
+  // Blockly.Arduino.definitions_['define_datasend_'+dropdown_pin] = "// gray data\n"+
+  // "void DatSend_"+dropdown_pin+"(uint32 dx)\n"+
+  // "{\n"+
+  // "  uint8 i;\n"+
+  // "  for (i=0; i<32; i++)\n"+
+  // "  {\n"+
+  // "    if ((dx & 0x80000000) != 0)\n"+
+  // "    {\n"+
+  // "      digitalWrite("+NextPIN+", HIGH);\n"+
+  // "    }\n"+
+  // "    else\n"+
+  // "    {\n"+
+  // "      digitalWrite("+NextPIN+", LOW);\n"+
+  // "    }\n"+
+  // "  dx <<= 1;\n"+
+  // "  ClkProduce_"+dropdown_pin+"();\n"+
+  // "  }\n"+
+  // "}\n";
+  // Blockly.Arduino.definitions_['define_datadealwithsend_'+dropdown_pin] = "// data processing\n"+
+// "void DataDealWithAndSend_"+dropdown_pin+"(uint8 r, uint8 g, uint8 b)\n"+
+// "{\n"+
+  // "  uint32 dx = 0;\n"+
+  // "  dx |= (uint32)0x03 << 30;             // highest two bits 1，flag bits\n"+
+  // "  dx |= (uint32)TakeAntiCode(b) << 28;\n"+
+  // "  dx |= (uint32)TakeAntiCode(g) << 26;\n"+
+  // "  dx |= (uint32)TakeAntiCode(r) << 24;\n"+
+ // "\n"+
+  // "  dx |= (uint32)b << 16;\n"+
+  // "  dx |= (uint32)g << 8;\n"+
+  // "  dx |= r;\n"+
+ // "\n"+
+  // "  DatSend_"+dropdown_pin+"(dx);\n"+
+// "}\n";
+  // var code = "Send32Zero_"+dropdown_pin+"(); // begin\n";
+  // console.log(this.itemCount_);
+  // if (this.itemCount_ == 0) {
+    // return '';
+  // } else {
+    // for (var n = 0; n < this.itemCount_; n++) {
+      // var colour_rgb = this.getFieldValue('RGB'+n);
+      // console.log(colour_rgb);
+      // code += "DataDealWithAndSend_"+dropdown_pin+"("+hexToR(colour_rgb)+", "+hexToG(colour_rgb)+", "+hexToB(colour_rgb)+"); // first node data\n";
+    // }
+  // }
+  // code += "Send32Zero_"+dropdown_pin+"();  // send to update data\n";
+  // return code;
+// };
 
 Blockly.Arduino.grove_bluetooth_slave = function() {
   var dropdown_pin = this.getFieldValue('PIN');
