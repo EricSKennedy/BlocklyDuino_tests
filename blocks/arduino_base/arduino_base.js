@@ -63,7 +63,7 @@ Blockly.Blocks.inout_buildin_led = {
      this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_HELPURL);
      this.appendDummyInput("")
 	     .appendField(Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_INPUT)
-	     .appendField(new Blockly.FieldDropdown([["1 - haut", "HIGH"], ["0 - bas", "LOW"]]), "STAT");
+	     .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), "STAT");
      this.setPreviousStatement(true, null);
      this.setNextStatement(true, null);
      this.setTooltip(Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_TOOLTIP);
@@ -81,7 +81,7 @@ Blockly.Blocks.inout_digital_write = {
     this.setInputsInline(true);
 	this.appendDummyInput("")
       	.appendField(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_INPUT2)
-      	.appendField(new Blockly.FieldDropdown([["1 -> 5V", "HIGH"], ["0 -> 0V", "LOW"]]), "STAT");
+      	.appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), "STAT");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_TOOLTIP);
@@ -187,7 +187,7 @@ Blockly.Blocks.inout_onoff = {
     this.setColour(230);
 	this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_ONOFF_HELPURL);
     this.appendDummyInput("")
-        .appendField(new Blockly.FieldDropdown([["1 -> 5V", "HIGH"], ["0 -> 0V", "LOW"]]), 'BOOL')
+        .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), 'BOOL')
     this.setOutput(true,'Boolean');
     this.setTooltip(Blockly.Msg.LOGIC_BOOLEAN_TOOLTIP);
   }
