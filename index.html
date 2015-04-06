@@ -18,6 +18,8 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
 <script type="text/javascript" src="blocks/arduino_base/arduino_base.js"></script>
 <script type="text/javascript" src="blocks/grove/grove.js"></script>
 <script type="text/javascript" src="blocks/technozone51/technozone.js"></script>
+<script type="text/javascript" src="blocks/zumobot/zumo_motors.js"></script>
+<script type="text/javascript" src="blocks/zumobot/zumo_sensors.js"></script>
 
 <script type="text/javascript" src="generators/arduino/blocklyduino.js"></script>
 <script type="text/javascript" src="generators/arduino/arduino_base.js"></script>
@@ -29,6 +31,8 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
 <script type="text/javascript" src="generators/arduino/technozone.js"></script>
 <script type="text/javascript" src="generators/arduino/text.js"></script>
 <script type="text/javascript" src="generators/arduino/variables.js"></script>
+<script type="text/javascript" src="generators/arduino/zumo_motors.js"></script>
+<script type="text/javascript" src="generators/arduino/zumo_sensors.js"></script>
 
 <script type="text/javascript" src="utils/spin.js"></script>
 <script type="text/javascript" src="utils/blocklyDuino.js"></script>
@@ -391,19 +395,48 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
             <block type="inout_digital_read"></block>
         </category>
         <category name="CAT_ARDUINO_OUT">
-            <block type="base_delay"></block>
+			<block type="base_delay">			
+				<value name="DELAY_TIME">
+					<block type="math_number">
+					<field name="NUM">1000</field>
+					</block>
+				</value>
+			</block>
             <block type="base_map"></block>
             <block type="inout_PWM_write"></block>
-            <block type="inout_analog_write"></block>
+            <block type="inout_analog_write">
+				<value name="NUM">
+				<block type="math_number">
+				<field name="NUM">0</field>
+				</block>
+				</value>
+			</block>
             <block type="inout_buildin_led"></block>
             <block type="inout_digital_write"></block>
             <block type="inout_onoff"></block>
             <block type="tone"></block>
             <block type="notone"></block>
-            <block type="serial_print"></block>
+            <block type="serial_print">
+				<value name="CONTENT">
+				<block type="text">
+				<field name="TEXT"></field>
+				</block>
+				</value>
+			</block>
         </category>
         <category name="CAT_ARDUINO_SERVO">
-            <block type="servo_move"></block>
+            <block type="servo_move">
+				<value name="DEGREE">
+				<block type="math_number">
+				<field name="NUM">0</field>
+				</block>
+				</value>
+				<value name="DELAY_TIME">
+				<block type="math_number">
+				<field name="NUM">1000</field>
+				</block>
+				</value>
+			</block>
             <block type="servo_read_degrees"></block>
         </category>
     </category>
@@ -430,7 +463,23 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
             <block type="grove_rgb_led"></block>
         </category>
         <category name="CAT_GROVE_LCD">
-            <block type="grove_serial_lcd_print"></block>
+            <block type="grove_serial_lcd_print">
+				<value name="TEXT">
+					<block type="text">
+					<field name="TEXT"></field>
+					</block>
+				</value>
+				<value name="TEXT2">
+					<block type="text">
+					<field name="TEXT"></field>
+					</block>
+				</value>
+				<value name="DELAY_TIME">
+					<block type="math_number">
+					<field name="NUM">1000</field>
+					</block>
+				</value>
+			</block>
             <block type="grove_serial_lcd_power"></block>
             <block type="grove_serial_lcd_effect"></block>
         </category>
@@ -490,6 +539,24 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
             <block type="technozone_telecsetup"></block>
             <block type="technozone_telecinit"></block>
             <block type="technozone_telecflush"></block>
+        </category>
+    </category>
+</xml>
+<xml id="CAT_ZUMO" style="display: none">
+    <sep></sep>
+    <category name="CAT_ZUMO">
+        <category name="CAT_ZUMO_MOTORS">
+            <block type="zumo_motors_FN"></block>
+            <block type="zumo_motors_FR"></block>
+            <block type="zumo_motors_FL"></block>
+            <block type="zumo_motors_FB"></block>
+            <block type="ardu_motor"></block>
+            <block type="ardu_motor_s"></block>
+        </category>
+        <category name="CAT_ZUMO_SENSORS">
+            <block type="setup_button_wait_il"></block>
+            <block type="setup_button_wait_iph"></block>
+            <block type="fourpin_ranger"></block>
         </category>
     </category>
 </xml>    

@@ -419,6 +419,10 @@ Blockly.Msg.CAT_TECHNOZONE_SERVO = "servo-moteurs";
 Blockly.Msg.CAT_TECHNOZONE_LCD = "écran LCD";
 Blockly.Msg.CAT_TECHNOZONE_TELEC = "télécommande";
 
+Blockly.Msg.CAT_ZUMO = "ZumoBot";	//added april 6th 2015
+Blockly.Msg.CAT_ZUMO_MOTORS = "Moteurs";
+Blockly.Msg.CAT_ZUMO_SENSORS = "Capteurs";
+
 Blockly.Msg.FIELDDROPDOWN = [["1 -> HAUT", "HIGH"], ["0 -> bas", "LOW"]];
 Blockly.Msg.FIELDDROPDOWN_ONOFF = [["marche", "ON"], ["arrêt", "OFF"]]
 
