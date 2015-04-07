@@ -1,3 +1,5 @@
+[Wiki : http://tic.technologiescollege.fr/wiki/doku.php/en/blockly_rduino/bugs](http://tic.technologiescollege.fr/wiki/doku.php/en/blockly_rduino/bugs)
+
 Version **internationale** de BlocklyDuino
 =====
 
