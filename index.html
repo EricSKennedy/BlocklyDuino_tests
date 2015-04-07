@@ -17,9 +17,9 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
 
 <script type="text/javascript" src="blocks/arduino_base/arduino_base.js"></script>
 <script type="text/javascript" src="blocks/grove/grove.js"></script>
+<script type="text/javascript" src="blocks/robots/motors.js"></script>
+<script type="text/javascript" src="blocks/robots/robotmisc.js"></script>
 <script type="text/javascript" src="blocks/technozone51/technozone.js"></script>
-<script type="text/javascript" src="blocks/zumobot/zumo_motors.js"></script>
-<script type="text/javascript" src="blocks/zumobot/zumo_sensors.js"></script>
 
 <script type="text/javascript" src="generators/arduino/blocklyduino.js"></script>
 <script type="text/javascript" src="generators/arduino/arduino_base.js"></script>
@@ -28,11 +28,11 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
 <script type="text/javascript" src="generators/arduino/logic.js"></script>
 <script type="text/javascript" src="generators/arduino/math.js"></script>
 <script type="text/javascript" src="generators/arduino/procedures.js"></script>
+<script type="text/javascript" src="generators/arduino/motors.js"></script>
+<script type="text/javascript" src="generators/arduino/robotmisc.js"></script>
 <script type="text/javascript" src="generators/arduino/technozone.js"></script>
 <script type="text/javascript" src="generators/arduino/text.js"></script>
 <script type="text/javascript" src="generators/arduino/variables.js"></script>
-<script type="text/javascript" src="generators/arduino/zumo_motors.js"></script>
-<script type="text/javascript" src="generators/arduino/zumo_sensors.js"></script>
 
 <script type="text/javascript" src="utils/spin.js"></script>
 <script type="text/javascript" src="utils/blocklyDuino.js"></script>
@@ -488,6 +488,34 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
         </category>
     </category>
 </xml>
+<xml id="CAT_ROBOTS" style="display: none">
+    <sep></sep>
+    <category name="CAT_ROBOTS">
+        <category name="CAT_ROBOTS_MOTORS">
+			<block type="arduino_s"></block>
+			<block type="ardu_motor_s"></block>
+			<block type="dfrobot_s"></block>
+			<block type="generic_motor"></block>
+			<block type="pololu_drv8835_s"></block>
+			<block type="radio_shack_s"></block>
+			<block type="zumo_motors_FNs"></block>
+			<block type="zumo_motors_FRs"></block>
+			<block type="zumo_motors_FLs"></block>
+			<block type="zumo_motors_FBs"></block>
+			<block type="ardu_motor"></block>
+			<block type="zumo_motors_FN"></block>
+			<block type="zumo_motors_FR"></block>
+			<block type="zumo_motors_FL"></block>
+			<block type="zumo_motors_FB"></block>
+        </category>
+        <category name="CAT_ROBOT_MISC">
+			<block type="setup_button_wait_il"></block>
+			<block type="setup_button_wait_iph"></block>
+			<block type="fourpin_ranger"></block>
+			<block type="play_notes_z"></block>
+        </category>
+    </category>
+</xml>
 <xml id="CAT_TECHNOZONE" style="display: none">
     <sep></sep>
     <category name="CAT_TECHNOZONE">
@@ -542,23 +570,6 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
         </category>
     </category>
 </xml>
-<xml id="CAT_ZUMO" style="display: none">
-    <sep></sep>
-    <category name="CAT_ZUMO">
-        <category name="CAT_ZUMO_MOTORS">
-            <block type="zumo_motors_FN"></block>
-            <block type="zumo_motors_FR"></block>
-            <block type="zumo_motors_FL"></block>
-            <block type="zumo_motors_FB"></block>
-            <block type="ardu_motor"></block>
-            <block type="ardu_motor_s"></block>
-        </category>
-        <category name="CAT_ZUMO_SENSORS">
-            <block type="setup_button_wait_il"></block>
-            <block type="setup_button_wait_iph"></block>
-            <block type="fourpin_ranger"></block>
-        </category>
-    </category>
-</xml>    
+  
 </body>
 </html>
