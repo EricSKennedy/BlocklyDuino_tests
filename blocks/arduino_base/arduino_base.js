@@ -201,7 +201,7 @@ Blockly.Blocks.servo_move = {
 	this.setHelpUrl(Blockly.Msg.ARDUINO_SERVO_MOVE_HELPURL);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT1)
-        .appendField(new Blockly.FieldImage(Blockly.Msg.ARDUINO_SERVO_MOVE_IMAGE, 64, 64))
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/arduino_base/servomoteur.jpg', 64, 64))
     this.appendDummyInput("")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT2)
@@ -226,7 +226,7 @@ Blockly.Blocks.servo_read_degrees = {
 	this.setHelpUrl(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_HELPURL);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_INPUT1)
-        .appendField(new Blockly.FieldImage(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_IMAGE, 64, 64))
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/arduino_base/servomoteur.jpg', 64, 64))
 	this.appendDummyInput("")	
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_INPUT2)
