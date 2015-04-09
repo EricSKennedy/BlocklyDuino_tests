@@ -43,8 +43,8 @@ Blockly.Blocks['setup_button_wait_il'] = {
 };
 
 Blockly.Blocks['setup_button_wait_iph'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTS_MISC_SETUP_ZUMO_TITLE)
@@ -65,8 +65,8 @@ Blockly.Blocks['fourpin_ranger'] = {
         .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN")
 		this.setInputsInline(false);
 	this.appendDummyInput()
-		.appendField(new Blockly.FieldImage("/media/fourpin_range.jpg", 40, 40))
-       .appendField(Blockly.Msg.ROBOTS_MISC_ECHO_PIN )
+		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/robots/fourpin_range.jpg', 40, 40)) 
+		.appendField(Blockly.Msg.ROBOTS_MISC_ECHO_PIN )
        .appendField(new Blockly.FieldDropdown(profile.default.digital), "PIN2")
 	   .setAlign(Blockly.ALIGN_RIGHT)
 	this.setOutput(true, 'Number');

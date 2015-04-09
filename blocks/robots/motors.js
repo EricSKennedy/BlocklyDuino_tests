@@ -33,8 +33,8 @@ goog.require('Blockly.Blocks');
 
 
 Blockly.Blocks['zumo_motors_FN'] = {
-  helpUrl: (Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL),
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTS_MOTORS_ZUMO_FN_TITLE)
@@ -47,8 +47,8 @@ Blockly.Blocks['zumo_motors_FN'] = {
 };
 
 Blockly.Blocks['zumo_motors_FNs'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
-  init: function() {
+   init: function() {
+    this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
 	this.setInputsInline(false) ; 
     this.appendDummyInput()
@@ -72,8 +72,8 @@ Blockly.Blocks['zumo_motors_FNs'] = {
 };
 
 Blockly.Blocks['zumo_motors_FR'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
-  init: function() {
+ init: function() {
+    this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTS_MOTORS_ZUMO_FR_TITLE)
@@ -86,8 +86,8 @@ Blockly.Blocks['zumo_motors_FR'] = {
 };
 
 Blockly.Blocks['zumo_motors_FRs'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
   init: function() {
+    this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
 	this.setInputsInline(false) ; 
     this.appendDummyInput()
@@ -111,8 +111,8 @@ Blockly.Blocks['zumo_motors_FRs'] = {
 };
 
 Blockly.Blocks['zumo_motors_FL'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTS_MOTORS_ZUMO_FL_TITLE)
@@ -125,8 +125,8 @@ Blockly.Blocks['zumo_motors_FL'] = {
 };
 
 Blockly.Blocks['zumo_motors_FLs'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
-  init: function() {
+init: function() {
+    this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
 	this.setInputsInline(false) ; 
     this.appendDummyInput()
@@ -150,8 +150,8 @@ Blockly.Blocks['zumo_motors_FLs'] = {
 };
 
 Blockly.Blocks['zumo_motors_FBs'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTS_MOTORS_ZUMO_FBS_TITLE)
@@ -174,8 +174,8 @@ Blockly.Blocks['zumo_motors_FBs'] = {
 };
 
 Blockly.Blocks['zumo_motors_FB'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MISC_ZUMO_HELPURL);
     this.setColour(190);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTS_MOTORS_ZUMO_FB_TITLE)
@@ -187,11 +187,9 @@ Blockly.Blocks['zumo_motors_FB'] = {
   }
 };
 
-//stopped here
-
 Blockly.Blocks['ardu_motor'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MOTORS_ARDUMOTOR_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MOTORS_ARDUMOTOR_HELPURL);
     this.setColour(190);
     this.appendDummyInput()
         .appendField(Blockly.Msg.ROBOTS_MOTORS_ARDUMOTOR_TITLE )
@@ -204,8 +202,8 @@ Blockly.Blocks['ardu_motor'] = {
 };
 
 Blockly.Blocks['ardu_motor_s'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MOTORS_ARDUMOTOR_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MOTORS_ARDUMOTOR_HELPURL);
     this.setColour(190);
 	this.setInputsInline(false) ; 
 	this.appendDummyInput()
@@ -229,8 +227,8 @@ Blockly.Blocks['ardu_motor_s'] = {
 };
 
 Blockly.Blocks['arduino_s'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MOTORS_ARDUNIO_S_HELPURL,
-  init: function() {
+   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MOTORS_ARDUNIO_S_HELPURL);
     this.setColour(190);
 	this.setInputsInline(false) ; 
 	this.appendDummyInput()
@@ -254,8 +252,8 @@ Blockly.Blocks['arduino_s'] = {
 };
 
 Blockly.Blocks['pololu_drv8835_s'] = {
-  helpUrl: 'https://www.pololu.com/product/2511/resources',
   init: function() {
+	this.setHelpUrl('https://www.pololu.com/product/2511/resources');
     this.setColour(190);
 	this.setInputsInline(false) ; 
     this.appendDummyInput()
@@ -280,8 +278,8 @@ Blockly.Blocks['pololu_drv8835_s'] = {
 
 
 Blockly.Blocks['radio_shack_s'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MOTORS_RADIOSHACK_S_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MOTORS_RADIOSHACK_S_HELPURL);
     this.setColour(190);
 	this.setInputsInline(false) ; 
     this.appendDummyInput()
@@ -305,8 +303,8 @@ Blockly.Blocks['radio_shack_s'] = {
 };
 
 Blockly.Blocks['dfrobot_s'] = {
-  helpUrl: Blockly.Msg.ROBOTS_MOTORS_DFROBOT_S_HELPURL,
   init: function() {
+	this.setHelpUrl(Blockly.Msg.ROBOTS_MOTORS_DFROBOT_S_HELPURL);
     this.setColour(190);
 	this.setInputsInline(false) ; 
     this.appendDummyInput()
