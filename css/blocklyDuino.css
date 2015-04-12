@@ -82,7 +82,7 @@ html[dir="RTL"] #divTabpanel {
 	padding-right: 5px;
 }
 
-#btn_config,#button_saveXML,#button_fakeload {
+#btn_config,#btn_saveXML {
 	margin: 5px 0;
 }
 
@@ -99,9 +99,9 @@ html[dir="RTL"] #divTabpanel {
 }
 
 #btn_about {
-	position: absolute;
-	left: 5px;
-	bottom: 5px;
+    position: absolute;
+    left: 100px;
+    top: 50px;
 }
 
 #toggle {
@@ -122,9 +122,14 @@ html[dir="RTL"] #divTabpanel {
 	bottom: 40px;
 }
 
-#pre_arduino,#pre_xml {
+#pre_xml {
 	height: 85%;
 	width: 100%;
+}
+
+#pre_arduino {
+    height: 65%;
+    width: 100%;
 }
 
 #modal-body {
@@ -150,7 +155,7 @@ html[dir="RTL"] #divTabpanel {
 }
 
 #debug_arduino {
-	height: 5%;
+	height: 25%;
 	border-width: 2px;
 	border-color: black;
 	background-color: rgba(8, 8, 8, 1);
