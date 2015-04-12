@@ -8,7 +8,7 @@
  * Create a namespace for the application.
  */
 var BlocklyDuino = {};
-
+Blockly.pathToBlockly = './';
 /**
  * List of tab names.
  * @private
