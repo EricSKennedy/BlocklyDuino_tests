@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+html[dir="RTL"] #menuPanel {
+	float: right;
+}
+
+#menuPanel {
+	clear: both;
+	float: left;
+	width: 200px;
+    padding-left: 10px;
+	position: absolute;
+}
+
+#btn_config,#btn_saveXML {
+	margin: 5px 0;
+}
+
+#divTabpanel {
+    height: 100%;
+    margin-left:200px;
+}

@@ -471,6 +471,9 @@ BlocklyDuino.changeSize = function() {
  * Initialize Blockly.  Called on page load.
  */
 BlocklyDuino.init = function() {
+	
+	BlocklyDuino.setOrientation();
+	
 	Code.initLanguage();
 
 	if (BlocklyDuino.getSize() == 'max') {
@@ -483,7 +486,7 @@ BlocklyDuino.init = function() {
 		divTabpanel.style.width = "100%";
 		divTabpanel.style.height = "100%";
 		divTabpanel.style.position = "absolute";
-		divTabpanel.style.paddingTop = "0px";
+		divTabpanel.style.top = "0px";
 		divTabpanel.style.marginLeft = "0px";
 
 		// hide Title
@@ -541,20 +544,56 @@ BlocklyDuino.init = function() {
 };
 
 /**
+ * Set menu orientation 
+ */
+BlocklyDuino.setOrientation = function() {
+
+	var newOrientation = BlocklyDuino.getStringParamFromUrl('ort', '');
+
+	var fileref1=document.createElement("link");
+    fileref1.setAttribute("rel", "stylesheet");
+    fileref1.setAttribute("type", "text/css");
+    fileref1.setAttribute("href", "css/blocklyDuino.css");
+    document.getElementsByTagName("head")[0].appendChild(fileref1);
+
+    var fileref=document.createElement("link");
+    fileref.setAttribute("rel", "stylesheet");
+    fileref.setAttribute("type", "text/css");
+	
+	var ulNav = document.getElementById("ul_nav");
+
+	if (newOrientation == 'hor') {
+        fileref.setAttribute("href", "css/blocklyDuino-hor.css");
+        ulNav.className = "nav nav-pills";
+	} else {
+        fileref.setAttribute("href", "css/blocklyDuino-ver.css");
+        ulNav.className = "nav nav-pills nav-stacked";
+	}
+	
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+	
+};
+
+/**
  * Switch menu orientation 
  */
 BlocklyDuino.switchOrientation = function() {
   // Store the blocks for the duration of the reload.
 	BlocklyDuino.backupBlocks();
 
+	var curOrientation = BlocklyDuino.getStringParamFromUrl('ort', '');
+
   var search = window.location.search;
-  var path = window.location.pathname.split('/').pop();
-  if (path == 'index.html') {
+  if (search.length <= 1) {
+	    search = '?ort=hor';
+	  } else if (search.match(/[?&]ort=[^&]*/)) {
+	    search = search.replace(/([?&]ort=)[^&]*/, '');
+	    search = search.replace(/\&/, '?');
+	  } else {
+	    search = search.replace(/\?/, '?ort=hor&');
+	  }
+
 	  window.location = window.location.protocol + '//' +
-      window.location.host + window.location.pathname.replace("index.html","index-hor.html") + search;
-  } else {
-  window.location = window.location.protocol + '//' +
-  window.location.host + window.location.pathname.replace("index-hor.html","index.html") + search;
-  }
+	      window.location.host + window.location.pathname + search;
 };
 
