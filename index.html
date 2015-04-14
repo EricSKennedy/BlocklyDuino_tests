@@ -42,7 +42,6 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
 <script type="text/javascript" src="utils/prettify.js"></script>
 <script type="text/javascript" src="lang/code.js"></script>
 
-<link rel="stylesheet" type="text/css" href="css/blocklyDuino.css">
 <link rel="stylesheet" type="text/css" href="css/prettify.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
@@ -60,21 +59,35 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
         </p>
         <select id="languageMenu"></select>
     </div>
+    <button id="btn_about" type="button" class="btn btn-default btn-xs"
+        data-toggle="modal" data-target="#aboutModal">
+        <span id="span_about"> </span>
+    </button>
 
     <div id="divBody">
-    <!-- Nav tabs -->
     <div id="menuPanel">
-			<label id="labelArduinoCard"></label> 
-			<select id="pinout">
-				<option value="arduino_uno">UNO</option>
-				<option value="arduino_mega">MEGA</option>
-			</select>
-			<br/>
-			<button id="btn_config" class="btn btn-warning" data-toggle="modal" data-target="#configModal">
-				<span class="glyphicon glyphicon-cog"> </span>
-				<span id="span_config"> </span>
-			</button>
-			<ul class="nav nav-pills nav-stacked" role="tablist">
+    <div id="menuPanelLeft">
+    <div id="divSwitch">
+            <button id="btn_switch" class="btn btn-default">
+                <span class="glyphicon glyphicon-retweet"> </span>
+            </button>
+     </div>
+    <div id="divCard">
+            <label id="labelArduinoCard"></label> 
+            <select id="pinout">
+                <option value="arduino_uno">UNO</option>
+                <option value="arduino_mega">MEGA</option>
+            </select>
+    </div>
+    <div id="divConfig">
+            <button id="btn_config" class="btn btn-warning" data-toggle="modal" data-target="#configModal">
+                <span class="glyphicon glyphicon-cog"> </span>
+                <span id="span_config"> </span>
+            </button>
+    </div>
+    </div>
+    <div id="menuPanelCenter">
+            <ul id="ul_nav" role="tablist">
             <li role="presentation" id="tab_blocks" class="active">
                  <a href="#content_blocks" aria-controls="content_blocks" role="tab"    data-toggle="tab">
                      <span class="glyphicon glyphicon-home"></span>
@@ -100,22 +113,21 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
                  </a>
              </li>
         </ul>
-    <div id="divButtons">
-        <a id="button_saveXML" class='btn btn-success' href="#" role='button'>
+        </div>
+            <div id="menuPanelRight">
+        <a id="btn_saveXML" class='btn btn-success' href="#" role='button'>
           <span class="glyphicon glyphicon-floppy-save"></span>
           <span id="span_saveXML"> </span>
          </a>
-         <br/>
-        <button id="button_fakeload" class="btn btn-success">
+        <button id="btn_fakeload" class="btn btn-success">
             <span class="glyphicon glyphicon-floppy-open"></span>
             <span   id="span_fakeload"> </span>
         </button>
         <input type="file" id="load" style="display: none;" />
-        <button id="btn_about" type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#aboutModal">
-            <span id="span_about"> </span>
-        </button>
+</div>        
     </div>
-    </div>
+    
+    <!-- Nav tabs -->
     <div id="divTabpanel" role="tabpanel">
         <!-- Tab panes -->
         <div id="content_area" class="tab-content">
@@ -139,8 +151,12 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
                 <select id="cb_cf_boards"></select>
                 <select id="cb_cf_ports"></select>
                 <button id="cb_cf_verify_btn" class="btn btn-primary"></button>
+                <button id="btn_edit_code" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+                    <span class="glyphicon glyphicon-pencil"> </span>
+                    <span id="span_config"> </span>
+                </button>
                 <button id="cb_cf_flash_btn" class="btn btn-primary"></button>
-                <a id="button_saveArduino" class='btn btn-primary' href="#" role='button'></a>
+                <a id="btn_saveArduino" class='btn btn-primary' href="#" role='button'></a>
                 <pre id="pre_arduino"></pre>
                 <div id="debug_arduino"></div>
             </div>
@@ -188,6 +204,24 @@ contient la liste des blocs de Blockly ci-dessous en compressé-->
       <div class="modal-footer">
         <button id="btn_close" type="button" class="btn btn-default" data-dismiss="modal" ></button>
         <button id="btn_valid" type="button" class="btn btn-primary"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- edit code modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editModalLabel"></h4>
+      </div>
+      <div class="modal-body" id="modal-body">
+                <textarea id="edit_code" rows="20" cols="100"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button id="btn_closeCode" type="button" class="btn btn-default" data-dismiss="modal" ></button>
+        <button id="btn_validCode" type="button" class="btn btn-primary"  data-dismiss="modal"></button>
       </div>
     </div>
   </div>

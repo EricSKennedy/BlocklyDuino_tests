@@ -176,6 +176,8 @@ Code.initLanguage = function() {
   document.getElementById('aboutModalLabel').textContent = MSG['aboutModalLabel'];
   document.getElementById('aboutBody').textContent = MSG['aboutBody'];
   
+  document.getElementById('btn_switch').title = MSG['btn_switch'];
+
   document.getElementById('span_config').textContent = MSG['span_config'];
   document.getElementById('labelArduinoCard').textContent = MSG['labelArduinoCard'];
 
@@ -191,14 +193,19 @@ Code.initLanguage = function() {
   document.getElementById('a_xml').textContent = MSG['a_xml'];
 
   document.getElementById('cb_cf_verify_btn').textContent = MSG['cb_cf_verify_btn'];
+  document.getElementById('btn_edit_code').textContent = MSG['btn_edit_code'];
   document.getElementById('cb_cf_flash_btn').textContent = MSG['cb_cf_flash_btn'];
-  document.getElementById('button_saveArduino').textContent = MSG['button_saveArduino'];
+  document.getElementById('btn_saveArduino').textContent = MSG['button_saveArduino'];
   document.getElementById('cb_cf_serial_monitor_connect').textContent = MSG['cb_cf_serial_monitor_connect'];
 
   document.getElementById('configModalLabel').textContent = MSG['configModalLabel'];
   document.getElementById('span_select_all').textContent = MSG['span_select_all'];
   document.getElementById('btn_close').textContent = MSG['btn_close'];
   document.getElementById('btn_valid').textContent = MSG['btn_valid'];
+
+  document.getElementById('editModalLabel').textContent = MSG['editModalLabel'];
+  document.getElementById('btn_closeCode').textContent = MSG['btn_closeCode'];
+  document.getElementById('btn_validCode').textContent = MSG['btn_validCode'];
 
 };
 

@@ -62,6 +62,33 @@ BlocklyDuino.renderContent = function() {
 };
 
 /**
+ * Populate the the edit textarea "edit_code" with the pre arduino code
+ */
+BlocklyDuino.editArduinoCode = function() {
+	    var arduino_code = document.getElementById('edit_code');
+	    var arduino_content = document.getElementById('pre_arduino');
+	    
+	    arduino_code.value = arduino_content.textContent;
+};
+
+/**
+ * Populate the content arduino code pane with the edit textarea "edit_code"
+ */
+BlocklyDuino.valideEditedCode = function() {
+	    var arduino_code = document.getElementById('edit_code');
+	    var arduino_content = document.getElementById('pre_arduino');
+	    try {
+		    arduino_content.textContent = arduino_code.value;
+		    if (typeof prettyPrintOne == 'function') {
+		      var code_html = prettyPrintOne(arduino_content.innerHTML, 'cpp');
+		      arduino_content.innerHTML = code_html;
+		    }
+	    } catch (e) {
+	            alert(e);
+		}
+};
+
+/**
  * Render Arduino code in preview box
  */
 BlocklyDuino.renderArduinoCodePreview = function() {
@@ -260,15 +287,15 @@ BlocklyDuino.bindClick = function (el, func) {
 BlocklyDuino.bindFunctions = function () {
   // Navigation buttons
 	BlocklyDuino.bindClick('btn_delete', BlocklyDuino.discard);
-	BlocklyDuino.bindClick('button_saveXML',  BlocklyDuino.saveXmlFile);
-	BlocklyDuino.bindClick('button_saveArduino',  BlocklyDuino.saveArduinoFile);
+	BlocklyDuino.bindClick('btn_saveXML',  BlocklyDuino.saveXmlFile);
+	BlocklyDuino.bindClick('btn_saveArduino',  BlocklyDuino.saveArduinoFile);
 
   var pinout = document.getElementById('pinout');
   BlocklyDuino.bindEvent(pinout, 'change', BlocklyDuino.arduinoCard);
 
   var loadInput = document.getElementById('load');
   BlocklyDuino.bindEvent(loadInput, 'change', BlocklyDuino.load);
-  BlocklyDuino.bindClick('button_fakeload', function() {loadInput.click(); });
+  BlocklyDuino.bindClick('btn_fakeload', function() {loadInput.click(); });
 
   for (var i = 0; i < BlocklyDuino.TABS_.length; i++) {
 	    var name = BlocklyDuino.TABS_[i];
@@ -279,6 +306,9 @@ BlocklyDuino.bindFunctions = function () {
   BlocklyDuino.bindClick('btn_size',  BlocklyDuino.changeSize);
   BlocklyDuino.bindClick('btn_config',  BlocklyDuino.openConfigToolbox);
 
+  BlocklyDuino.bindClick('btn_edit_code', BlocklyDuino.editArduinoCode);
+  BlocklyDuino.bindClick('btn_validCode', BlocklyDuino.valideEditedCode);
+
   BlocklyDuino.bindClick('select_all',  BlocklyDuino.checkAll);
   BlocklyDuino.bindClick('btn_valid',  BlocklyDuino.changeToolbox);
   
@@ -288,7 +318,9 @@ BlocklyDuino.bindFunctions = function () {
   BlocklyDuino.bindClick('pre_previewArduino', function() {
 	   $( "#toggle" ).toggle( "slide" );
  });
-  
+
+  BlocklyDuino.bindClick('btn_switch',  BlocklyDuino.switchOrientation);
+
 };
 
 /**
@@ -439,6 +471,9 @@ BlocklyDuino.changeSize = function() {
  * Initialize Blockly.  Called on page load.
  */
 BlocklyDuino.init = function() {
+	
+	BlocklyDuino.setOrientation();
+	
 	Code.initLanguage();
 
 	if (BlocklyDuino.getSize() == 'max') {
@@ -451,7 +486,7 @@ BlocklyDuino.init = function() {
 		divTabpanel.style.width = "100%";
 		divTabpanel.style.height = "100%";
 		divTabpanel.style.position = "absolute";
-		divTabpanel.style.paddingTop = "0px";
+		divTabpanel.style.top = "0px";
 		divTabpanel.style.marginLeft = "0px";
 
 		// hide Title
@@ -507,3 +542,58 @@ BlocklyDuino.init = function() {
 						});
 			});
 };
+
+/**
+ * Set menu orientation 
+ */
+BlocklyDuino.setOrientation = function() {
+
+	var newOrientation = BlocklyDuino.getStringParamFromUrl('ort', '');
+
+	var fileref1=document.createElement("link");
+    fileref1.setAttribute("rel", "stylesheet");
+    fileref1.setAttribute("type", "text/css");
+    fileref1.setAttribute("href", "css/blocklyDuino.css");
+    document.getElementsByTagName("head")[0].appendChild(fileref1);
+
+    var fileref=document.createElement("link");
+    fileref.setAttribute("rel", "stylesheet");
+    fileref.setAttribute("type", "text/css");
+	
+	var ulNav = document.getElementById("ul_nav");
+
+	if (newOrientation == 'hor') {
+        fileref.setAttribute("href", "css/blocklyDuino-hor.css");
+        ulNav.className = "nav nav-pills";
+	} else {
+        fileref.setAttribute("href", "css/blocklyDuino-ver.css");
+        ulNav.className = "nav nav-pills nav-stacked";
+	}
+	
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+	
+};
+
+/**
+ * Switch menu orientation 
+ */
+BlocklyDuino.switchOrientation = function() {
+  // Store the blocks for the duration of the reload.
+	BlocklyDuino.backupBlocks();
+
+	var curOrientation = BlocklyDuino.getStringParamFromUrl('ort', '');
+
+  var search = window.location.search;
+  if (search.length <= 1) {
+	    search = '?ort=hor';
+	  } else if (search.match(/[?&]ort=[^&]*/)) {
+	    search = search.replace(/([?&]ort=)[^&]*/, '');
+	    search = search.replace(/\&/, '?');
+	  } else {
+	    search = search.replace(/\?/, '?ort=hor&');
+	  }
+
+	  window.location = window.location.protocol + '//' +
+	      window.location.host + window.location.pathname + search;
+};
+
